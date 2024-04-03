@@ -1,0 +1,17 @@
+header{
+    display: flex;    
+}
+
+#logo{
+    width: 200px;
+    height: auto;
+    
+}
+
+.car{display: flex;}
+.description{display: flex;
+flex-direction: column;}
+
+
+.photo{width: 150px;
+height: auto;}
