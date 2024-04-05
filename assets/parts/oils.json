@@ -1,6 +1,10 @@
-[{"brand":"Nokian",
-"name": "Winter",
-"width": 205,
-"profile": 55,
-"radius": 16
+[{"brand":"Castrol",
+"name": "Castrol Speed",
+"content": 1.5,
+"price": 25
+},
+{"brand":"Castrol",
+"name": "Castrol Viper",
+"content": 2.5,
+"price": 35
 }]

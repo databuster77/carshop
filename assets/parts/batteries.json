@@ -1,6 +1,8 @@
-[{"brand":"Nokian",
-"name": "Winter",
-"width": 205,
-"profile": 55,
-"radius": 16
+[{"brand":"Polska",
+"name": "Polska Super",
+"price": 65
+},
+{"brand":"Chińska",
+"name": "Chińska Podróba",
+"price": 25
 }]

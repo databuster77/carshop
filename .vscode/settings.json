@@ -1,0 +1,8 @@
+{
+    "rainbow_csv.enable_separator_autodetection": false,
+    "rainbow_csv.autodetect_separators": [
+        "TAB",
+        ",",
+        "|"
+    ]
+}
