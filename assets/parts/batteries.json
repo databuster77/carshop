@@ -1,8 +1,10 @@
-[{"brand":"Polska",
+[{"id":"ak_0",
+"brand":"Polska",
 "name": "Polska Super",
 "price": 65
 },
-{"brand":"Chińska",
+{"id":"ak_1",
+"brand":"Chińska",
 "name": "Chińska Podróba",
 "price": 25
 }]

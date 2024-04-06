@@ -30,6 +30,60 @@
     <div class="car-list">
       <ul id="car-list" class="car-list-ul"></ul>
     </div>
+    <form class="buy-form">
+      <fieldset disabled>
+          <div class="brand">
+              <span class="item-att">Marka:</span><span class="item-att-val">N/A</span>
+          </div>
+          <div class="car-name">
+              <span class="item-att">Nazwa:</span><span class="item-att-val">N/A</span>
+          </div>
+          <div class="year">
+              <span class="item-att">Moc silnika:</span><span class="item-att-val">N/A</span>
+          </div>
+          <div class="power">
+              <span class="item-att">Rok produkcji:</span><span class="item-att-val">N/A</span>
+          </div>
+          <div class="milage">
+              <span class="item-att">Przebieg:</span><span class="item-att-val">N/A</span>
+          </div>
+          <div class="price">
+              <span class="item-att">Cena:</span><span class="item-att-val">N/A</span>
+          </div>
+      </fieldset>
+      <input type="radio" name="leasing" id="leasing">
+      <input type="radio" name="cash" id="cash">
+      <input type="text" name="first-name" id="first-name">
+      <input type="text" name="last-name" id="last-name">
+      <input type="date" name="delivery" id="delivery">
+      <input type="" name="first-name" id="first-name">
+      
+      <fieldset>
+      <select name="tires" id="tires"></select>
+      <button class="add-order-btn" id="add-tires-btn">Dodaj</button>
+      </fieldset>
+      
+      <fieldset>
+      <select name="oils" id="oils"></select>
+      <button class="add-order-btn" id="add-oils-btn">Dodaj</button>
+      </fieldset>
+      
+      <fieldset>
+      <select name="batteries" id="batteries"></select>  
+      <button class="add-order-btn" id="add-batteries-btn">Dodaj</button>
+      </fieldset>
+
+      <div id="accesories">
+        <p>Wybrane akcesoria:</p>
+        <ul id="chosen-accesories"></ul>        
+      </div>
+      <div class="total-price">
+      <p>WARTOŚĆ ZAMÓWIENIA ŁĄCZNIE:</p>
+      <span id="total-price"></span>
+    </div>
+      <button class="place-order-btn">Zamów</button>
+      <button class="return-list">Wróć do listy</button>
+    </form>
 
   </main>
   <footer></footer>

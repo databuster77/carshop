@@ -1,10 +1,12 @@
-[{"brand":"Castrol",
+[{"id":"ol_0",
+"brand":"Castrol",
 "name": "Castrol Speed",
-"content": 1.5,
+"capacity": 1.5,
 "price": 25
 },
-{"brand":"Castrol",
+{"id":"ol_1",
+"brand":"Castrol",
 "name": "Castrol Viper",
-"content": 2.5,
+"capacity": 2.5,
 "price": 35
 }]
