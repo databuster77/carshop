@@ -7,8 +7,7 @@ const fetchAccesories = (apiUrl, selectElement) => {
         }
         return response.json();
     })
-    .then(data => {
-        console.log(data);
+    .then(data => {        
         data.forEach(item => {
             let displayText;
             if (selectElement.id ==='batteries') {
@@ -26,64 +25,122 @@ const fetchAccesories = (apiUrl, selectElement) => {
     })
 };
 
-const addSelectionToBasket = (e) => {
+const fetchAccesoryPrice = (apiUrl, accesoryId) => {
+    return fetch(apiUrl)
+    .then(response => {        
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        return response.json();
+    })
+    .then(data => {        
+        let foundAccesory = data.filter(item => item.id===accesoryId)[0];
+        if (foundAccesory) {
+            console.log('foundAccesory', foundAccesory);            
+            return foundAccesory.price;
+        }
+        throw new Error('Accessory not found');
+        
+    })
+};
+
+const recalculateOrderPrice = () =>{
+    const ul = document.getElementById('chosen-accesories');
+    const accesoriesTotalPrice = [...ul.children].map(li => parseInt(li.querySelector('.accesory-total-price-amount').textContent)).reduce((accumulator, currentValue) => {
+        return accumulator + currentValue
+      },0);
+    let totalOrderPrice = document.getElementById('total-price');
+    totalOrderPriceRecalculated = parseInt(totalOrderPrice.textContent) + accesoriesTotalPrice;
+    totalOrderPrice.textContent = totalOrderPriceRecalculated;
+
+
+}
+
+
+const addSelectionToBasket = async (e) => {
         e.preventDefault();
         console.log('clicked add button',e.target.id);
+        const ul = document.getElementById('chosen-accesories');        
+        console.log('chosen accessories before adding', ul)
         const parentEl = document.getElementById(e.target.id).parentElement;
         const selectElement = parentEl.querySelector('select');
         const selectedOption = selectElement.options[selectElement.selectedIndex];
         const selectedItemText = selectedOption.text;
-        const selectedItemValue = selectedOption.value;
-        console.log(`${selectedItemText}--${selectedItemValue}`);
-        const ul = document.getElementById('chosen-accesories');        
-        let [assesoryName, assesoryPrice] = selectedItemText.split(':');
-        console.log('splitted values', assesoryName, assesoryPrice);        
+        const selectedItemValue = selectedOption.value;        
+        
+        let [accesoryName, ...suffixSelection] = selectedItemText.split(':');
+        let apiUrl;
+        if (selectedItemValue.startsWith('ak')) {
+            apiUrl = 'assets/parts/batteries.json';
+        }
+        else if (selectedItemValue.startsWith('op')) {
+            apiUrl = 'assets/parts/tires.json';
+        }
+        else if (selectedItemValue.startsWith('ol')) {
+            apiUrl = 'assets/parts/oils.json';
+        }
+        
+        let accesoryPrice = await fetchAccesoryPrice(apiUrl, selectedItemValue);
         const existingLi = [...ul.children].find(li => li.querySelector('.accesory-id').textContent === selectedItemValue);
-        
 
-    if (existingLi) {
-        
+
+    if (existingLi) {        
         console.log('Old Li updated');        
-        console.log(existingLi)
-        const quantityInput = existingLi.querySelector('input[type="number"]');
-        quantityInput.value = parseInt(quantityInput.value) + 1;
+        console.log('accesoryPrice', accesoryPrice);
+        console.log('existingLi',existingLi)
+        const quantityInput = existingLi.querySelector('input[id="accesory-quantity"]');        
+        quantityInput.value = parseInt(quantityInput.value) + 1;        
+        const accesoryTotalPrice = existingLi.querySelector('.accesory-total-price-amount');        
+        accesoryTotalPrice.textContent = accesoryPrice;        
+        recalculateOrderPrice();
     } else {
         console.log('New Li added');        
+        console.log('accesoryPrice', accesoryPrice);
+        console.log('existingLi',existingLi)
         const li = document.createElement('li');
         li.className = 'chosen-accesory';
         li.innerHTML = `<span class="accesory-id">${selectedItemValue}</span>
                         <span class="accesory-type">Opona</span>
-                        <span class="assesory-name">${assesoryName}</span>
-                        <span class="accesory-price">${assesoryPrice}</span>
+                        <span class="assesory-name">${accesoryName}</span>
+                        <span class="accesory-price">${accesoryPrice}</span>
                         <button class="accesory-more">+</button>
-                        <input type="number" name="accesory-quantity" id="accesory-quantity" value=1>
+                        <input type="text" name="accesory-quantity" id="accesory-quantity" value=1>
                         <button class="accesory-less">-</button>
-                        <button class="accesory-delete">Usuń</button>`;
-        ul.appendChild(li)}
+                        <button class="accesory-delete">Usuń</button>
+                        <span class="accesory-total-price">Cena łącznie: <span class="accesory-total-price-amount">${accesoryPrice}</span> PLN</span>`;
+        ul.appendChild(li);
+        recalculateOrderPrice();
+    }
     
     const accesoryMore = document.querySelector('.accesory-more');
     accesoryMore.addEventListener('click', (e)=>{
         e.preventDefault();        
         const quantityInput = e.target.parentElement.querySelector('#accesory-quantity')
-        quantityInput.value = parseInt(quantityInput.value) + 1;        
+        quantityInput.value = parseInt(quantityInput.value) + 1;
+        const accesoryTotalPrice = e.target.parentElement.querySelector('.accesory-total-price-amount');
+        accesoryTotalPrice.textContent = parseInt(quantityInput.value) * accesoryPrice;
+        recalculateOrderPrice();
         })
+
     const accesoryLess = document.querySelector('.accesory-less');
     accesoryLess.addEventListener('click', (e)=>{
         e.preventDefault();
         const quantityInput = e.target.parentElement.querySelector('#accesory-quantity')
         quantityInput.value = parseInt(quantityInput.value) - 1;
+        const accesoryTotalPrice = e.target.parentElement.querySelector('.accesory-total-price-amount');
+        accesoryTotalPrice.textContent = parseInt(quantityInput.value) * accesoryPrice;
+        recalculateOrderPrice();
         })
+    
     const accesoryDelete = document.querySelector('.accesory-delete');
     accesoryDelete.addEventListener('click', (e)=>{
         e.preventDefault();
-        const li = e.target.closest('li').remove()        
+        const li = e.target.closest('li').remove();
+        recalculateOrderPrice();        
         })
 
 };
 
-const recalculateOrder = () =>{
-    dsafasdfasdfasdf
-}
 
 fetch('assets/cars/cars.json')
     .then(response => {
@@ -92,8 +149,7 @@ fetch('assets/cars/cars.json')
         }
         return response.json();
     })
-    .then(data => {
-        console.log(data);
+    .then(data => {        
         const ul = document.getElementById('car-list');
         data.forEach((item, index) => {
             const li = document.createElement('li');
@@ -123,8 +179,7 @@ fetch('assets/cars/cars.json')
 
         });
         document.querySelectorAll('.order-config').forEach(button => {
-            button.addEventListener('click', (e) => {
-                console.log('data-index',e.target.getAttribute('data-index'));
+            button.addEventListener('click', (e) => {                
                 const index = e.target.getAttribute('data-index');
                 const description = document.getElementById(`desc-index-${index}`);
                 let brand = description.querySelector('.brand').querySelector('.item-att-val').textContent;
@@ -139,8 +194,7 @@ fetch('assets/cars/cars.json')
                                 power,
                                 milage,
                                 price};
-                localStorage.setItem('formData', JSON.stringify(formData));
-                console.log('lolacStorage', localStorage.getItem('formData'));                
+                localStorage.setItem('formData', JSON.stringify(formData));               
                 
                 const buyForm = document.getElementsByClassName('buy-form')[0];                
                 buyForm.querySelector('.brand').querySelector('.item-att-val').textContent = brand;
@@ -151,10 +205,10 @@ fetch('assets/cars/cars.json')
                 buyForm.querySelector('.price').querySelector('.item-att-val').textContent = price;                
                 document.getElementById('total-price').textContent = price;
                 document.getElementById('car-list').hidden =true;
-                buyForm.hidden =  false;
+                buyForm.hidden =  false;                
                 
-                const batteriesSelect = document.getElementById('batteries');
-                console.log(batteriesSelect);
+                
+                const batteriesSelect = document.getElementById('batteries');                
                 fetchAccesories('assets/parts/batteries.json', batteriesSelect);
                 const batteriesAdd = document.getElementById("add-batteries-btn");
                 batteriesAdd.addEventListener('click', (e)=>addSelectionToBasket(e));
@@ -172,18 +226,17 @@ fetch('assets/cars/cars.json')
                 const returnButton = document.getElementsByClassName(`return-list`)[0];
                 returnButton.addEventListener('click', (e) => {
                     e.preventDefault()
-                    const ul = document.getElementById('chosen-accesories');
+                    const ul = document.getElementById('chosen-accesories');                    
                     ul.innerHTML = '';
                     document.getElementById('car-list').hidden =false;
                     buyForm.hidden =  true;
+                    
                 })
 
                 const placeOrderButton = document.getElementsByClassName(`place-order-btn`)[0];                        
                 placeOrderButton.addEventListener('click', (e) => {
-                    e.preventDefault()
-                    console.log('klik')
-                    let shoppingBasket = localStorage.getItem('shoppingBasket')
-                    console.log(shoppingBasket)
+                    e.preventDefault()                    
+                    let shoppingBasket = localStorage.getItem('shoppingBasket')                    
                     if (shoppingBasket) {shoppingBasket.push({})}
                     else {localStorage.setItem('shoppingBasket', [{}])}                            
                 })
