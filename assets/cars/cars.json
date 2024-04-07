@@ -1,4 +1,5 @@
-[{"car_brand": "Skoda",
+[{"id":"ca_0",
+"car_brand": "Skoda",
 "car_name": "Skoda Kamiq",
 "price": 175000,
 "manufacture_year": 2021,
@@ -6,7 +7,8 @@
 "mileage": 95000,
 "picture_number": 8},
 
-{"car_brand": "Skoda",
+{"id":"ca_1",
+"car_brand": "Skoda",
 "car_name": "Skoda Superb Combi",
 "price": 112000,
 "manufacture_year": 2018,
@@ -14,7 +16,8 @@
 "mileage": 145000,
 "picture_number": 8},
 
-{"car_brand": "Skoda",
+{"id":"ca_2",
+"car_brand": "Skoda",
 "car_name": "Skoda Karoq",
 "price": 77000,
 "manufacture_year": 2016,
@@ -22,7 +25,8 @@
 "mileage": 102000,
 "picture_number": 7},
 
-{"car_brand": "Volvo",
+{"id":"ca_3",
+"car_brand": "Volvo",
 "car_name": "Volvo EX30",
 "price": 162000,
 "manufacture_year": 2023,
@@ -30,7 +34,8 @@
 "mileage": 15000,
 "picture_number": 8},
 
-{"car_brand": "Toyota",
+{"id":"ca_4",
+"car_brand": "Toyota",
 "car_name": "Toyota C-HR",
 "price": 138000,
 "manufacture_year": 2017,
@@ -38,7 +43,8 @@
 "mileage": 165000,
 "picture_number": 8},
 
-{"car_brand": "Kia",
+{"id":"ca_5",
+"car_brand": "Kia",
 "car_name": "Kia Sportage",
 "price": 85000,
 "manufacture_year": 2019,
@@ -46,7 +52,8 @@
 "mileage": 73000,
 "picture_number": 8},
 
-{"car_brand": "Citroen",
+{"id":"ca_6",
+"car_brand": "Citroen",
 "car_name": "Citroen C3",
 "price": 105000,
 "manufacture_year": 2020,
@@ -54,7 +61,8 @@
 "mileage": 89000,
 "picture_number": 4},
 
-{"car_brand": "Ford",
+{"id":"ca_7",
+"car_brand": "Ford",
 "car_name": "Ford Bronco",
 "price": 135000,
 "manufacture_year": 2021,
@@ -62,7 +70,8 @@
 "mileage": 66000,
 "picture_number": 7},
 
-{"car_brand": "Ford",
+{"id":"ca_8",
+"car_brand": "Ford",
 "car_name": "Ford Ranger",
 "price": 180000,
 "manufacture_year": 2023,
@@ -70,7 +79,8 @@
 "mileage": 25000,
 "picture_number": 7},
 
-{"car_brand": "Volkswagen",
+{"id":"ca_9",
+"car_brand": "Volkswagen",
 "car_name": "Volkswagen Amarok",
 "price": 127000,
 "manufacture_year": 2017,
