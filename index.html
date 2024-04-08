@@ -54,12 +54,19 @@
               <span class="item-att">Cena:</span><span class="item-att-val">N/A</span>
           </div>
       </fieldset>
-      <input type="radio" name="leasing" id="leasing">
-      <input type="radio" name="cash" id="cash">
+      <fieldset>
+      
+        <input type="radio" name="financing" id="leasing" value="leasing">
+        <label for="leasing">Leasing</label>
+        <input type="radio" name="financing" id="cash" value="cash">
+        <label for="cash">Gotówka</label>
+      <label for="first-name">Imię</label>
       <input type="text" name="first-name" id="first-name">
+      <label for="last-name">Nazwisko</label>
       <input type="text" name="last-name" id="last-name">
+      <label for="delivery">Wybierz datę dostawy:</label>
       <input type="date" name="delivery" id="delivery">
-      <input type="" name="first-name" id="first-name">
+    </fieldset>
       
       <fieldset>
       <select name="tires" id="tires"></select>

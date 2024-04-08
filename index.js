@@ -74,27 +74,51 @@ const recalculateOrderPrice = async (carId) => {
     let totalOrderPriceRecalculated = carPrice + accesoriesTotalPrice;
     totalOrderPrice.textContent = totalOrderPriceRecalculated;
     console.log('Recalculated Price', totalOrderPriceRecalculated);
-}
+    let orderConfigData = JSON.parse(localStorage.getItem('orderConfigData'));
+            if (orderConfigData) {
+                let chosenCar = orderConfigData.find(car => car.id === carId);
+                if (chosenCar) {
+                    let accesoriesData = [...ul.children].map(li =>{
+                        console.log('li', li);
+                        let accesoryId = li.querySelector('.accesory-id').textContent;
+                        let accesoryType = li.querySelector('.accesory-type').textContent;
+                        let assesoryName = li.querySelector('.assesory-name').textContent;
+                        let accesoryQuantity = li.querySelector('#accesory-quantity').textContent;                                                
+                        let accesoryData = {accesoryId, accesoryType, assesoryName, accesoryQuantity};                        
+                      return (accesoryData);  
+
+                    });
+
+                    console.log('accesoriesData', accesoriesData);
+                    chosenCar["chosen_accesories"] = accesoriesData;                    
+                    localStorage.setItem('orderConfigData', JSON.stringify(orderConfigData));
+                    console.log('added items to localStorage');                    
+                
+                }
+            }
+        }
+                
 
 const changeItemQuantity = (ops, button, accesoryPrice, carId) => {
     button.addEventListener('click', (e) => {
-            e.preventDefault();            
-            const quantityInput = e.target.parentElement.querySelector('#accesory-quantity');            
-            const accesoryTotalPrice = e.target.parentElement.querySelector('.accesory-total-price-amount');            
-            let totalAccesoryQuantityRecalculated;
-            if (ops==='add') {
-                console.log('clicked MORE');
-                totalAccesoryQuantityRecalculated = parseInt(quantityInput.textContent) + 1;
-            } else if (ops==='subtract') {
-                console.log('clicked LESS');
-                totalAccesoryQuantityRecalculated = parseInt(quantityInput.textContent) - 1;
-            }            
-            quantityInput.textContent = totalAccesoryQuantityRecalculated;
-            accesoryTotalPrice.textContent = accesoryPrice * totalAccesoryQuantityRecalculated;
-            recalculateOrderPrice(carId);
-        })
-    
+        e.preventDefault();
+        const quantityInput = e.target.parentElement.querySelector('#accesory-quantity');
+        const accesoryTotalPrice = e.target.parentElement.querySelector('.accesory-total-price-amount');
+        let totalAccesoryQuantityRecalculated;
+        if (ops === 'add') {
+            console.log('clicked MORE');
+            totalAccesoryQuantityRecalculated = parseInt(quantityInput.textContent) + 1;
+        } else if (ops === 'subtract') {
+            console.log('clicked LESS');
+            totalAccesoryQuantityRecalculated = parseInt(quantityInput.textContent) - 1;
+        }
+        quantityInput.textContent = totalAccesoryQuantityRecalculated;
+        accesoryTotalPrice.textContent = accesoryPrice * totalAccesoryQuantityRecalculated;
+        recalculateOrderPrice(carId);
+    })
+
 }
+
 const deletItem = (button, carId) => {
     button.addEventListener('click', (e) => {
         e.preventDefault();
@@ -102,9 +126,8 @@ const deletItem = (button, carId) => {
         const li = e.target.closest('li').remove();
         recalculateOrderPrice(carId);
     })
-        
 }
-    
+
 const addSelectionToBasket = async (e, carId) => {
     e.preventDefault();
     console.log('clicked add button', e.target.id);
@@ -133,11 +156,11 @@ const addSelectionToBasket = async (e, carId) => {
 
     if (existingLi) {
         console.log('Old Li updated');
-        console.log('accesoryPrice', accesoryPrice);        
+        console.log('accesoryPrice', accesoryPrice);
         const quantityInput = existingLi.querySelector('#accesory-quantity');
         console.log('quantityInput bef upd', quantityInput.textContent);
         let totalAccesoryQuantityRecalculated = parseInt(quantityInput.textContent) + 1;
-        console.log('totalAccesoryQuantityRecalculated', totalAccesoryQuantityRecalculated);        
+        console.log('totalAccesoryQuantityRecalculated', totalAccesoryQuantityRecalculated);
         quantityInput.textContent = totalAccesoryQuantityRecalculated;
         console.log('quantityInput aft upd', quantityInput.textContent);
         const accesoryTotalPrice = existingLi.querySelector('.accesory-total-price-amount');
@@ -167,11 +190,11 @@ const addSelectionToBasket = async (e, carId) => {
         changeItemQuantity('add', buttonMore, accesoryPrice, carId);
         changeItemQuantity('subtract', buttonLess, accesoryPrice, carId);
         deletItem(buttonDelete, carId);
-        console.log('lastAddedLi',lastAddedLi);
-        const quantityInput = lastAddedLi.querySelector('#accesory-quantity');        
-        console.log('quantityInput bef upd', quantityInput.textContent,parseInt(quantityInput.textContent));
+        console.log('lastAddedLi', lastAddedLi);
+        const quantityInput = lastAddedLi.querySelector('#accesory-quantity');
+        console.log('quantityInput bef upd', quantityInput.textContent, parseInt(quantityInput.textContent));
         totalAccesoryQuantityRecalculated = 1;
-        console.log('totalAccesoryQuantityRecalculated', totalAccesoryQuantityRecalculated);        
+        console.log('totalAccesoryQuantityRecalculated', totalAccesoryQuantityRecalculated);
         quantityInput.textContent = totalAccesoryQuantityRecalculated;
         console.log('quantityInput aft upd', quantityInput.textContent);
         const accesoryTotalPrice = lastAddedLi.querySelector('.accesory-total-price-amount');
@@ -179,7 +202,6 @@ const addSelectionToBasket = async (e, carId) => {
         recalculateOrderPrice(carId);
     };
 };
-
 
 fetch('assets/cars/cars.json')
     .then(response => {
@@ -217,96 +239,164 @@ fetch('assets/cars/cars.json')
             ul.appendChild(li);
 
         });
-        
+
     })
     .catch(error => {
         console.error('There was a problem with your fetch operation:', error);
     });
 
-    document.getElementById('car-list').addEventListener('click', (e) => {
-        if(e.target.className === 'order-config') {
-            // e.preventDefault();
-            e.target.addEventListener('click', (e) => {
-                const index = e.target.getAttribute('data-index');
-                const description = document.getElementById(`ca_${index}`);
-                let carId = `ca_${index}`;
-                let brand = description.querySelector('.brand').querySelector('.item-att-val').textContent;
-                let carName = description.querySelector('.car-name').querySelector('.item-att-val').textContent;
-                let year = description.querySelector('.year').querySelector('.item-att-val').textContent;
-                let power = description.querySelector('.power').querySelector('.item-att-val').textContent;
-                let milage = description.querySelector('.milage').querySelector('.item-att-val').textContent;
-                let price = description.querySelector('.price').querySelector('.item-att-val').textContent;
-                let formData = {carId,
-                                brand,
-                                carName,
-                                year,
-                                power,
-                                milage,
-                                price
-                            };
-                localStorage.setItem('formData', JSON.stringify(formData));
+document.getElementById('car-list').addEventListener('click', (e) => {
+    if (e.target.className === 'order-config') {
+        e.preventDefault();
+        // e.target.addEventListener('click', (e) => {
+            const index = e.target.getAttribute('data-index');
+            const description = document.getElementById(`ca_${index}`);
+            let carId = `ca_${index}`;
+            let brand;
+            let carName;
+            let year;
+            let power;
+            let milage;
+            let price;
+            brand = description.querySelector('.brand').querySelector('.item-att-val').textContent;
+            carName = description.querySelector('.car-name').querySelector('.item-att-val').textContent;
+            year = description.querySelector('.year').querySelector('.item-att-val').textContent;
+            power = description.querySelector('.power').querySelector('.item-att-val').textContent;
+            milage = description.querySelector('.milage').querySelector('.item-att-val').textContent;
+            price = description.querySelector('.price').querySelector('.item-att-val').textContent;
+            
+            const buyForm = document.getElementsByClassName('buy-form')[0];
+            buyForm.querySelector('.car-id').querySelector('.item-att-val').textContent = carId;
+            buyForm.querySelector('.brand').querySelector('.item-att-val').textContent = brand;
+            buyForm.querySelector('.car-name').querySelector('.item-att-val').textContent = carName;
+            buyForm.querySelector('.year').querySelector('.item-att-val').textContent = year;
+            buyForm.querySelector('.power').querySelector('.item-att-val').textContent = power;
+            buyForm.querySelector('.milage').querySelector('.item-att-val').textContent = milage;
+            buyForm.querySelector('.price').querySelector('.item-att-val').textContent = price;
+            buyForm.dataset.carId = carId;
+            document.getElementById('total-price').textContent = price;
 
-                const buyForm = document.getElementsByClassName('buy-form')[0];
-                buyForm.querySelector('.car-id').querySelector('.item-att-val').textContent = carId;
-                buyForm.querySelector('.brand').querySelector('.item-att-val').textContent = brand;
-                buyForm.querySelector('.car-name').querySelector('.item-att-val').textContent = carName;
-                buyForm.querySelector('.year').querySelector('.item-att-val').textContent = year;
-                buyForm.querySelector('.power').querySelector('.item-att-val').textContent = power;
-                buyForm.querySelector('.milage').querySelector('.item-att-val').textContent = milage;
-                buyForm.querySelector('.price').querySelector('.item-att-val').textContent = price;
-                buyForm.dataset.carId = carId;
-                document.getElementById('total-price').textContent = price;
-                document.getElementById('car-list').hidden = true;
-                buyForm.hidden = false;
-
-                const batteriesSelect = document.getElementById('batteries');
-                fetchAccesories('assets/parts/batteries.json', batteriesSelect);
-                const oilsSelect = document.getElementById('oils');
-                fetchAccesories('assets/parts/oils.json', oilsSelect);
-                const tiresSelect = document.getElementById('tires');
-                fetchAccesories('assets/parts/tires.json', tiresSelect);
-            });
-        };
-    });
-
-    document.body.addEventListener('click', function(e) {        
-        if (e.target && e.target.id === 'add-batteries-btn') {            
-            const carId = e.target.closest('.buy-form').dataset.carId;
-            addSelectionToBasket(e, carId);
-        } else if (e.target && e.target.id === 'add-oils-btn') {            
-            const carId = e.target.closest('.buy-form').dataset.carId;
-            addSelectionToBasket(e, carId);
-        } else if (e.target && e.target.id === 'add-tires-btn') {            
-            const carId = e.target.closest('.buy-form').dataset.carId;
-            addSelectionToBasket(e, carId);
-        }        
-    });
-        
-
-
-
-
-
-    const returnButton = document.getElementsByClassName(`return-list`)[0];
-                returnButton.addEventListener('click', (e) => {
-                    e.preventDefault()
-                    console.log('clicked RETURN');
+            let formData = {
+                "id": carId,
+                "car_brand": brand,
+                "car_brand": carName,
+                "manufacture_year": year,
+                "engine_power": power,
+                "mileage": milage,
+                "price": price
+            };
+            let orderConfigData = JSON.parse(localStorage.getItem('orderConfigData'));
+            
+            if (orderConfigData) {
+                let chosenCar = orderConfigData.find(car => car.id === carId);
+                if (chosenCar) {
                     const ul = document.getElementById('chosen-accesories');
-                    while (ul.firstChild) {
-                        ul.removeChild(ul.firstChild);
+                    console.log('ul before putting data from storage', ul)
+                    if (chosenCar.chosen_accesories) {
+                        console.log('chosenCar.chosen_accesories', chosenCar.chosen_accesories);
+                        chosenCar.chosen_accesories.forEach(accesory => {
+                            let li = document.createElement('li');
+                            li.className = 'chosen-accesory';                        
+                            li.innerHTML = `<span class="accesory-id">${accesory.accesoryId}</span>
+                            <span class="accesory-type">${accesory.accesoryType}</span>
+                            <span class="assesory-name">${accesory.assesoryName}</span>
+                            <span class="accesory-price">Cena szt.: PLN</span>
+                            <button class="accesory-more">+</button>
+                            <span id="accesory-quantity">${accesory.accesoryQuantity}</span>
+                            <button class="accesory-less">-</button>
+                            <button class="accesory-delete">Usuń</button>
+                            <span class="accesory-total-price">Cena łącznie: <span class="accesory-total-price-amount"></span> PLN</span>`;
+                            ul.appendChild(li);
+                            const buttonMore = li.querySelector('.accesory-more');
+                            const buttonLess = li.querySelector('.accesory-less');
+                            const buttonDelete = li.querySelector('.accesory-delete');
+                            let apiUrl;
+                            if (accesory.accesoryId.startsWith('ak')) {
+                                apiUrl = 'assets/parts/batteries.json';
+                            }
+                            else if (accesory.accesoryId.startsWith('op')) {
+                                apiUrl = 'assets/parts/tires.json';
+                            }
+                            else if (accesory.accesoryId.startsWith('ol')) {
+                                apiUrl = 'assets/parts/oils.json';
+                            }
+                                
+                            fetchAccesoryPrice(apiUrl, accesory.accesoryId)
+                                                .then(accesoryPrice => {
+                                                    const quantityInput = li.querySelector('#accesory-quantity');
+                                                    const accesoryTotalPrice = li.querySelector('.accesory-total-price-amount');
+                                                    const accesoryPriceIn = li.querySelector('.accesory-price');
+                                                    accesoryTotalPrice.textContent = accesoryPrice * parseInt(quantityInput.textContent);                                                    
+                                                    accesoryPriceIn.textContent = accesoryPrice;
+                                                    
+                                                    changeItemQuantity('add', buttonMore, accesoryPrice, chosenCar.id);
+                                                    changeItemQuantity('subtract', buttonLess, accesoryPrice, chosenCar.id);
+                                                    deletItem(buttonDelete, chosenCar.id);
+                                                    });
+                        });
                     };
-                    const totalOrderPrice = document.getElementById('total-price');
-                    totalOrderPrice.textContent = 0;
-                    console.log('chosen accessories before adding', document.getElementById('chosen-accesories'));
-                    document.getElementById('car-list').hidden = false;
-                    document.getElementsByClassName('buy-form')[0].hidden = true;
+                    
+                    
+                } else {
+                    orderConfigData.push(formData);
+                    localStorage.setItem('orderConfigData', JSON.stringify(orderConfigData));
+                }
+            }
+            else {
+                localStorage.setItem('orderConfigData', JSON.stringify([]));
+                orderConfigData = [];
+                orderConfigData.push(formData);
+                localStorage.setItem('orderConfigData', JSON.stringify(orderConfigData));
+            };
 
-                });
 
-    const placeOrderButton = document.getElementsByClassName(`place-order-btn`)[0];
-    placeOrderButton.addEventListener('click', (e) => {
-        e.preventDefault()
-        let shoppingBasket = localStorage.getItem('shoppingBasket')
-        if (shoppingBasket) { shoppingBasket.push({}) }
-        else { localStorage.setItem('shoppingBasket', [{}]) }
-    });
+            document.getElementById('car-list').hidden = true;
+            buyForm.hidden = false;
+
+            const batteriesSelect = document.getElementById('batteries');
+            fetchAccesories('assets/parts/batteries.json', batteriesSelect);
+            const oilsSelect = document.getElementById('oils');
+            fetchAccesories('assets/parts/oils.json', oilsSelect);
+            const tiresSelect = document.getElementById('tires');
+            fetchAccesories('assets/parts/tires.json', tiresSelect);
+        // });
+                
+    };
+});
+
+document.body.addEventListener('click', function (e) {
+    // e.preventDefault();
+    if (e.target && e.target.id === 'add-batteries-btn') {
+        const carId = e.target.closest('.buy-form').dataset.carId;
+        addSelectionToBasket(e, carId);
+    } else if (e.target && e.target.id === 'add-oils-btn') {
+        const carId = e.target.closest('.buy-form').dataset.carId;
+        addSelectionToBasket(e, carId);
+    } else if (e.target && e.target.id === 'add-tires-btn') {
+        const carId = e.target.closest('.buy-form').dataset.carId;
+        addSelectionToBasket(e, carId);
+    }
+});
+
+const returnButton = document.getElementsByClassName(`return-list`)[0];
+returnButton.addEventListener('click', (e) => {
+    e.preventDefault()
+    console.log('clicked RETURN');
+    const ul = document.getElementById('chosen-accesories');
+    while (ul.firstChild) {
+        ul.removeChild(ul.firstChild);
+    };
+    const totalOrderPrice = document.getElementById('total-price');
+    totalOrderPrice.textContent = 0;
+    console.log('chosen accessories before adding', document.getElementById('chosen-accesories'));
+    document.getElementById('car-list').hidden = false;
+    document.getElementsByClassName('buy-form')[0].hidden = true;
+
+});
+
+const placeOrderButton = document.getElementsByClassName(`place-order-btn`)[0];
+placeOrderButton.addEventListener('click', (e) => {
+    e.preventDefault()
+
+    
+});
