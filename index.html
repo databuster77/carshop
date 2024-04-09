@@ -1,103 +1,107 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <script defer src="index.js"></script>
+    <script
+      src="https://kit.fontawesome.com/c8ffbd1647.js"
+      crossorigin="anonymous"
+    ></script>
+    <title>Document</title>
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="style.css" />
-  <script defer src="index.js"></script>
-  <script src="https://kit.fontawesome.com/c8ffbd1647.js" crossorigin="anonymous"></script>
-  <title>Document</title>
-</head>
+  <body>
+    <header>
+      <img id="logo" src="./assets/logo.webp" alt="logo" />
+      <p>ZŁOMEK AUTO<br />NIEOGRANICZONE MARZENIA OGRANICZONA GWARANCJA</p>
+      <i class="fa-solid fa-basket-shopping"></i>
+      <div class="hamburger-menu">
+        <i id="menu__toggle" class="fa-solid fa-bars-staggered"></i>
+        <ul class="menu__box">
+          <li><a class="menu__item" href="#">Rejestracja</a></li>
+          <li><a class="menu__item" href="#">Logowanie</a></li>
+          <li><a class="menu__item" href="#">Historia zamówień</a></li>
+        </ul>
+      </div>
+    </header>
 
-<body>
-  <header>
-    <img id="logo" src="./assets/logo.webp" alt="logo" />    
-    <p>ZŁOMEK AUTO<br>NIEOGRANICZONE MARZENIA OGRANICZONA GWARANCJA</p>
-    <i class="fa-solid fa-basket-shopping"></i>
-    <div class="hamburger-menu">
-      <i id="menu__toggle" class="fa-solid fa-bars-staggered"></i>
-      <ul class="menu__box">
-        
-        <li><a class="menu__item" href="#">Rejestracja</a></li>
-        <li><a class="menu__item" href="#">Logowanie</a></li>
-        <li><a class="menu__item" href="#">Historia zamówień</a></li>
-      </ul>
-    </div>
-  </header>
-  
-  <main>
-    <div class="car-list">
-      <ul id="car-list" class="car-list-ul"></ul>
-    </div>
-    <form class="buy-form">
-      <fieldset disabled>
+    <main>
+      <div class="car-list">
+        <ul id="car-list" class="car-list-ul"></ul>
+      </div>
+      <form class="buy-form">
+        <fieldset disabled>
           <div class="car-id">
-              <span class="item-att">Id:</span><span class="item-att-val">N/A</span>
-          </div>  
+            <span class="item-att">Id:</span
+            ><span class="item-att-val">N/A</span>
+          </div>
           <div class="brand">
-              <span class="item-att">Marka:</span><span class="item-att-val">N/A</span>
+            <span class="item-att">Marka:</span
+            ><span class="item-att-val">N/A</span>
           </div>
           <div class="car-name">
-              <span class="item-att">Nazwa:</span><span class="item-att-val">N/A</span>
+            <span class="item-att">Nazwa:</span
+            ><span class="item-att-val">N/A</span>
           </div>
           <div class="year">
-              <span class="item-att">Moc silnika:</span><span class="item-att-val">N/A</span>
+            <span class="item-att">Moc silnika:</span
+            ><span class="item-att-val">N/A</span>
           </div>
           <div class="power">
-              <span class="item-att">Rok produkcji:</span><span class="item-att-val">N/A</span>
+            <span class="item-att">Rok produkcji:</span
+            ><span class="item-att-val">N/A</span>
           </div>
           <div class="milage">
-              <span class="item-att">Przebieg:</span><span class="item-att-val">N/A</span>
+            <span class="item-att">Przebieg:</span
+            ><span class="item-att-val">N/A</span>
           </div>
           <div class="price">
-              <span class="item-att">Cena:</span><span class="item-att-val">N/A</span>
+            <span class="item-att">Cena:</span
+            ><span class="item-att-val">N/A</span>
           </div>
-      </fieldset>
-      <fieldset>
-      
-        <input type="radio" name="financing" id="leasing" value="leasing">
-        <label for="leasing">Leasing</label>
-        <input type="radio" name="financing" id="cash" value="cash">
-        <label for="cash">Gotówka</label>
-      <label for="first-name">Imię</label>
-      <input type="text" name="first-name" id="first-name">
-      <label for="last-name">Nazwisko</label>
-      <input type="text" name="last-name" id="last-name">
-      <label for="delivery">Wybierz datę dostawy:</label>
-      <input type="date" name="delivery" id="delivery">
-    </fieldset>
-      
-      <fieldset>
-      <select name="tires" id="tires"></select>
-      <button class="add-order-btn" id="add-tires-btn">Dodaj</button>
-      </fieldset>
-      
-      <fieldset>
-      <select name="oils" id="oils"></select>
-      <button class="add-order-btn" id="add-oils-btn">Dodaj</button>
-      </fieldset>
-      
-      <fieldset>
-      <select name="batteries" id="batteries"></select>  
-      <button class="add-order-btn" id="add-batteries-btn">Dodaj</button>
-      </fieldset>
+        </fieldset>
+        <fieldset id="order-details">
+          <input type="radio" name="financing" id="cash" value=true />
+          <label for="cash">Gotówka</label>
+          <input type="radio" name="financing" id="leasing" value=true />
+          <label for="leasing">Leasing</label>
+          <label for="first-name">Imię</label>
+          <input type="text" name="first-name" id="first-name" />
+          <label for="last-name">Nazwisko</label>
+          <input type="text" name="last-name" id="last-name" />
+          <label for="delivery">Wybierz datę dostawy:</label>
+          <input type="date" name="delivery" id="delivery" />
+        </fieldset>
 
-      <div id="accesories">
-        <p>Wybrane akcesoria:</p>
-        <ul id="chosen-accesories"></ul>        
-      </div>
-      <div class="total-price">
-      <p>WARTOŚĆ ZAMÓWIENIA ŁĄCZNIE:</p>
-      <span id="total-price"></span>
-    </div>
-      <button class="place-order-btn">Zamów</button>
-      <button class="return-list">Wróć do listy</button>
-    </form>
+        <fieldset>
+          <select name="tires" id="tires"></select>
+          <button class="add-order-btn" id="add-tires-btn">Dodaj</button>
+        </fieldset>
 
-  </main>
-  <footer></footer>
+        <fieldset>
+          <select name="oils" id="oils"></select>
+          <button class="add-order-btn" id="add-oils-btn">Dodaj</button>
+        </fieldset>
 
-</body>
+        <fieldset>
+          <select name="batteries" id="batteries"></select>
+          <button class="add-order-btn" id="add-batteries-btn">Dodaj</button>
+        </fieldset>
 
+        <div id="accesories">
+          <p>Wybrane akcesoria:</p>
+          <ul id="chosen-accesories"></ul>
+        </div>
+        <div class="total-price">
+          <p>WARTOŚĆ ZAMÓWIENIA ŁĄCZNIE:</p>
+          <span id="total-price"></span>
+        </div>
+        <button class="place-order-btn">Zamów</button>
+        <button class="return-list">Wróć do listy</button>
+      </form>
+    </main>
+    <footer></footer>
+  </body>
 </html>
