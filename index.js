@@ -263,7 +263,7 @@ const saveData = (e, carId) => {
 // 
 // 
 // 
-
+document.getElementsByClassName("buy-form")[0].hidden = true;
 fetch("assets/cars/cars.json")
   .then((response) => {
     if (!response.ok) {
