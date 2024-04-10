@@ -1,24 +1,119 @@
-* {box-sizing: border-box;
-margin: 0;}
-
-header{
-    display: flex;    
+* {
+  box-sizing: border-box;
+  margin: 0;
 }
 
-#logo{
+body {
+  display: flex;
+  flex-direction: column;
+}
+
+header {
+  display: flex;
+  flex-direction: column;
+  background-color: rgb(228, 234, 236);
+}
+
+#head-car{
+    height: 50vh;
+    
+    object-fit: cover;
+}
+
+p#intro{
+    display: flex;
+    
+    justify-content: space-around;
+}
+
+p#intro span{
+    background-color: red;
+    font-size: 30px;
+    color: antiquewhite;
+ 
+}
+#search-form{
+    
+    margin-top: 20px;
+    margin-bottom: 20px;
+    padding: 20px;
+}
+main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  
+}
+
+ul#car-list {
+    width: 900px;
+    flex-wrap: wrap;
+    display: flex;    
+  list-style-type: none;
+  justify-content: center;
+  margin: 0;
+  padding: 0;
+  background-color: rgb(224, 227, 230);;
+  
+}
+
+ul#car-list>li {  
+  background-color: rgb(224, 227, 230);
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;  
+  margin-bottom: 20px;
+  padding: 20px;
+  border: 2px solid black;
+  border-radius: 15px;
+  
+}
+
+.car-main-picture{
+    height: 250px;
+    width: 350px;
+}
+.description {
+  display: flex;
+  width: 20vw;  
+  flex-direction: column;
+}
+
+.wrapper{background-color:  red}
+#pagination-controls{display: flex;}
+.buy-form{
+    display: flex;
+    flex-direction: column;
+    width: 500px;
+    background-color: rgb(224, 227, 230);
+}
+
+footer{display: flex;
+justify-content:center;
+background-color:  rgb(224, 227, 230);;
+color: aqua;}
+
+#logo {
     width: 200px;
     height: auto;
-    
-}
+  }
 
-.car{display: flex;}
-.description{display: flex;
-flex-direction: column;}
+  #visit-card{display: flex;
+flex-direction: column;
+margin-left: 30px;}
 
-
-.photo{width: 150px;
-height: auto;}
-
-
-i{width: 140px;
-    background-color: ghostwhite;}
+#pagination-controls {
+    text-align: center;
+    margin-top: 20px;
+    background-color: ghostwhite;
+  }
+  
+  #pagination-controls button {
+    padding: 5px 15px;
+    margin: 0 10px;
+    background-color: ghostwhite;
+  }
+  
+  #page-info {
+    font-weight: bold;
+  }

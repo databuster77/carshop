@@ -5,6 +5,7 @@
 "manufacture_year": 2021,
 "engine_power": 150,
 "mileage": 95000,
+"main_picture":"assets/cars/skodakamiq/z30699883IH,Skoda-Kamiq-1-5-TSI-DSG-Monte-Carlo (1).jpg",
 "picture_number": 8},
 
 {"id":"ca_1",
@@ -14,6 +15,7 @@
 "manufacture_year": 2018,
 "engine_power": 150,
 "mileage": 145000,
+"main_picture":"assets/cars/skodasuperbcombi/z30812195IH,Skoda-Superb-Combi-Laurin--amp--Klement.jpg",
 "picture_number": 8},
 
 {"id":"ca_2",
@@ -23,6 +25,7 @@
 "manufacture_year": 2016,
 "engine_power": 166,
 "mileage": 102000,
+"main_picture":"assets/cars/skodakaroq/z30676445IH,Skoda-Karoq-2-0-TDI-115-KM-DSG.jpg",
 "picture_number": 7},
 
 {"id":"ca_3",
@@ -32,6 +35,7 @@
 "manufacture_year": 2023,
 "engine_power": 428,
 "mileage": 15000,
+"main_picture":"assets/cars/volvoex30/z30831467IH,Volvo-EX30.jpg",
 "picture_number": 8},
 
 {"id":"ca_4",
@@ -41,6 +45,7 @@
 "manufacture_year": 2017,
 "engine_power": 140,
 "mileage": 165000,
+"main_picture":"assets/cars/toyotachr/z30784438IH,Toyota-C-HR-Plug-in-Hybrid.jpg",
 "picture_number": 8},
 
 {"id":"ca_5",
@@ -50,6 +55,7 @@
 "manufacture_year": 2019,
 "engine_power": 185,
 "mileage": 73000,
+"main_picture":"assets/cars/kiasportage/z30786416IH,Kia-Sportage-Anniversary.jpg",
 "picture_number": 8},
 
 {"id":"ca_6",
@@ -59,12 +65,14 @@
 "manufacture_year": 2020,
 "engine_power": 165,
 "mileage": 89000,
+"main_picture":"assets/cars/citroenc3/z30781627IH,Citroen-C3-2024-r-.jpg",
 "picture_number": 4},
 
 {"id":"ca_7",
 "car_brand": "Ford",
 "car_name": "Ford Bronco",
 "price": 135000,
+"main_picture":"assets/cars/fordbronco/z30758256IH,Ford-Bronco-Badlands.jpg",
 "manufacture_year": 2021,
 "engine_power": 255,
 "mileage": 66000,
@@ -77,6 +85,7 @@
 "manufacture_year": 2023,
 "engine_power": 260,
 "mileage": 25000,
+"main_picture":"assets/cars/fordranger/z30699758IH,Ford-Ranger-Platinum.jpg",
 "picture_number": 7},
 
 {"id":"ca_9",
@@ -86,5 +95,6 @@
 "manufacture_year": 2017,
 "engine_power": 215,
 "mileage": 133000,
+"main_picture":"assets/cars/vwamarok/z30639020IH,Volkswagen-Amarok-3-0-TDI.jpg",
 "picture_number": 7}
 ]

@@ -14,85 +14,132 @@
 
   <body>
     <header>
-      <img id="logo" src="./assets/logo.webp" alt="logo" />
-      <p>ZŁOMEK AUTO<br />NIEOGRANICZONE MARZENIA OGRANICZONA GWARANCJA</p>      
+      <img
+        id="head-car"
+        src="/assets/pictures/hanson-lu-956EmlIRARQ-unsplash.jpg"
+        alt="car"
+      />
+      <p id="intro"><span>KOMIS AUT ZŁOMEK</span><span>NAPĘDZANY TWOJE MARZENIA O NOWYM AUCIE...</span></p>
     </header>
-
+    
     <main>
-      <div class="car-list">
-        <ul id="car-list" class="car-list-ul"></ul>
+      <div class="search">
+        <form id="search-form" action="">
+          <label for="search">Wyszukaj Markę</label>
+          <input type="text" name="search" id="search" class="brand-search" />
+        </form>
       </div>
-      <form class="buy-form">
-        <fieldset disabled>
-          <div class="car-id">
-            <span class="item-att">Id:</span
-            ><span class="item-att-val">N/A</span>
-          </div>
-          <div class="brand">
-            <span class="item-att">Marka:</span
-            ><span class="item-att-val">N/A</span>
-          </div>
-          <div class="car-name">
-            <span class="item-att">Nazwa:</span
-            ><span class="item-att-val">N/A</span>
-          </div>
-          <div class="year">
-            <span class="item-att">Moc silnika:</span
-            ><span class="item-att-val">N/A</span>
-          </div>
-          <div class="power">
-            <span class="item-att">Rok produkcji:</span
-            ><span class="item-att-val">N/A</span>
-          </div>
-          <div class="milage">
-            <span class="item-att">Przebieg:</span
-            ><span class="item-att-val">N/A</span>
-          </div>
-          <div class="price">
-            <span class="item-att">Cena:</span
-            ><span class="item-att-val">N/A</span>
-          </div>
-        </fieldset>
-        <fieldset id="order-details">
-          <input type="radio" name="financing" id="cash" value=true />
-          <label for="cash">Gotówka</label>
-          <input type="radio" name="financing" id="leasing" value=true />
-          <label for="leasing">Leasing</label>
-          <label for="first-name">Imię</label>
-          <input type="text" name="first-name" id="first-name" />
-          <label for="last-name">Nazwisko</label>
-          <input type="text" name="last-name" id="last-name" />
-          <label for="delivery">Wybierz datę dostawy:</label>
-          <input type="date" name="delivery" id="delivery" />
-        </fieldset>
 
-        <fieldset>
-          <select name="tires" id="tires"></select>
-          <button class="add-order-btn" id="add-tires-btn">Dodaj</button>
-        </fieldset>
+      
 
-        <fieldset>
-          <select name="oils" id="oils"></select>
-          <button class="add-order-btn" id="add-oils-btn">Dodaj</button>
-        </fieldset>
-
-        <fieldset>
-          <select name="batteries" id="batteries"></select>
-          <button class="add-order-btn" id="add-batteries-btn">Dodaj</button>
-        </fieldset>
-
-        <div id="accesories">
-          <p>Wybrane akcesoria:</p>
-          <ul id="chosen-accesories"></ul>
+      <!-- <div class="wrapper"> -->
+      <!-- <img
+        class="car-side"
+        src="/assets/pictures/olav-tvedt--oVaYMgBMbs-unsplash.jpg"
+        alt="car-left-side"
+      /> -->
+      <!-- </div> -->
+      <div class="wrapper">
+        <div class="car-list">
+          <ul id="car-list" class="car-list-ul"></ul>
         </div>
-        <div class="total-price">
-          <p>WARTOŚĆ ZAMÓWIENIA ŁĄCZNIE:</p>
-          <span id="total-price"></span>
+        <div id="pagination-controls">
+          <button id="prev-btn">Previous</button>
+          <span id="page-info"></span>
+          <button id="next-btn">Next</button>
         </div>
-        <button class="place-order-btn">Zamów</button>
-        <button class="return-list">Wróć do listy</button>
-      </form>
+        <form class="buy-form">
+          <fieldset disabled>
+            <div class="car-id">
+              <span class="item-att">Id:</span
+              ><span class="item-att-val">N/A</span>
+            </div>
+            <div class="brand">
+              <span class="item-att">Marka:</span
+              ><span class="item-att-val">N/A</span>
+            </div>
+            <div class="car-name">
+              <span class="item-att">Nazwa:</span
+              ><span class="item-att-val">N/A</span>
+            </div>
+            <div class="year">
+              <span class="item-att">Moc silnika:</span
+              ><span class="item-att-val">N/A</span>
+            </div>
+            <div class="power">
+              <span class="item-att">Rok produkcji:</span
+              ><span class="item-att-val">N/A</span>
+            </div>
+            <div class="milage">
+              <span class="item-att">Przebieg:</span
+              ><span class="item-att-val">N/A</span>
+            </div>
+            <div class="price">
+              <span class="item-att">Cena:</span
+              ><span class="item-att-val">N/A</span>
+            </div>
+          </fieldset>
+          <fieldset id="order-details">
+            <input type="radio" name="financing" id="cash" value="true" />
+            <label for="cash">Gotówka</label>
+            <input type="radio" name="financing" id="leasing" value="true" />
+            <label for="leasing">Leasing</label>
+            <label for="first-name">Imię</label>
+            <input type="text" name="first-name" id="first-name" />
+            <label for="last-name">Nazwisko</label>
+            <input type="text" name="last-name" id="last-name" />
+            <label for="delivery">Wybierz datę dostawy:</label>
+            <input type="date" name="delivery" id="delivery" />
+          </fieldset>
+
+          <fieldset>
+            <select name="tires" id="tires"></select>
+            <button class="add-order-btn" id="add-tires-btn">Dodaj</button>
+          </fieldset>
+
+          <fieldset>
+            <select name="oils" id="oils"></select>
+            <button class="add-order-btn" id="add-oils-btn">Dodaj</button>
+          </fieldset>
+
+          <fieldset>
+            <select name="batteries" id="batteries"></select>
+            <button class="add-order-btn" id="add-batteries-btn">Dodaj</button>
+          </fieldset>
+
+          <div id="accesories">
+            <p>Wybrane akcesoria:</p>
+            <ul id="chosen-accesories"></ul>
+          </div>
+          <div class="total-price">
+            <p>WARTOŚĆ ZAMÓWIENIA ŁĄCZNIE:</p>
+            <span id="total-price"></span>
+          </div>
+          <button class="place-order-btn">Zamów</button>
+          <button class="return-list">Wróć do listy</button>
+        </form>
+      </div>
+      <!-- <div class="wrapper"> -->
+      <!-- <img
+        class="car-side"
+        src="/assets/pictures/olav-tvedt--oVaYMgBMbs-unsplash_flipped.jpg"
+        alt="car-right-side"
+      /> -->
+      <!-- </div> -->
     </main>
-    <footer></footer>
+    
+    <footer>
+      <img id="logo" src="/assets/logo.webp" alt="logo" />
+      <p id="visit-card">
+        <span>ZŁOMEK AUTO VERY LIMITED SP. Z O.O.</span>
+        <span>NIEOGRANICZONE MARZENIA...</span>
+        <span>OGRANICZONA GWARANCJA</span>
+        <span>KONTAKT:</span>
+        <span>666-66 HEL UL. STANISŁAWA ANIOŁA 4</span>
+        <span>TEL: +48 666 666 666</span>
+        <span>MAIL: ZŁOMEK-AUTO@HEL.COM</span>
+
+      </p>
+    </footer>
   </body>
 </html>

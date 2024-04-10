@@ -263,7 +263,7 @@ const saveData = (e, carId) => {
 // 
 // 
 // 
-document.getElementsByClassName("buy-form")[0].hidden = true;
+// document.getElementsByClassName("buy-form")[0].hidden = true;
 fetch("assets/cars/cars.json")
   .then((response) => {
     if (!response.ok) {
@@ -275,7 +275,10 @@ fetch("assets/cars/cars.json")
     const ul = document.getElementById("car-list");
     data.forEach((item, index) => {
       const li = document.createElement("li");
-      let liContent = `<div class="description" id="${item.id}">            
+      let liContent = `<div class="car-image">
+                            <img class="car-main-picture" src="${item.main_picture}" alt="car"/>
+                            </div>
+                            <div class="description" id="${item.id}">
                             <div class="brand">
                             <span class="item-att">Marka:</span><span class="item-att-val">${item.car_brand}</span>
                             </div>
@@ -293,9 +296,9 @@ fetch("assets/cars/cars.json")
                             </div>
                             <div class="price">
                             <span class="item-att">Cena:</span><span class="item-att-val">${item.price}</span>
+                            </div>                            
                             </div>
-                            <button class="order-config" data-index="${index}">Konfiguracja zamówienia</button>                            
-                            </div>`;
+                            <button class="order-config" data-index="${index}">Konfiguracja zamówienia</button>                            `;
       li.innerHTML = liContent;
       ul.appendChild(li);
     });
@@ -545,4 +548,46 @@ placeOrderButton.addEventListener("click", (e) => {
 //   localStorage.removeItem('orderConfigData');
 //   window.location.href = 'order-confirmation.html';
 
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+  console.log('TEST PAGINATION')
+  const itemsPerPage = 5;
+  let currentPage = 1;
+  const listItems = document.querySelectorAll('#car-list li');
+  const totalPages = Math.ceil(listItems.length / itemsPerPage);
+
+  function showPage(page) {
+    console.log('TEST PAGINATION')
+    const start = (page - 1) * itemsPerPage;
+    const end = start + itemsPerPage;
+    listItems.forEach((item, index) => {
+      if (index >= start && index < end) {
+        item.style.display = '';
+      } else {
+        item.style.display = 'none';
+      }
+    });    
+    document.getElementById('page-info').textContent = `Page ${page} of ${totalPages}`;
+    
+    // document.getElementById('prev-btn').style.visibility = currentPage === 1 ? 'hidden' : 'visible';
+    // document.getElementById('next-btn').style.visibility = currentPage === totalPages ? 'hidden' : 'visible';
+  }
+
+  document.getElementById('prev-btn').addEventListener('click', function() {
+    if (currentPage > 1) {
+      currentPage--;
+      showPage(currentPage);
+    }
+  });
+
+  document.getElementById('next-btn').addEventListener('click', function() {
+    if (currentPage < totalPages) {
+      currentPage++;
+      showPage(currentPage);
+    }
+  });
+
+  // Initialize
+  showPage(currentPage);
 });
