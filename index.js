@@ -260,10 +260,9 @@ const saveData = (e, carId) => {
     }
   };
 
-// 
-// 
-// 
-// document.getElementsByClassName("buy-form")[0].hidden = true;
+
+document.getElementsByClassName("buy-form")[0].style.display = "none";
+
 fetch("assets/cars/cars.json")
   .then((response) => {
     if (!response.ok) {
@@ -448,8 +447,8 @@ document.getElementById("car-list").addEventListener("click", (e) => {
       localStorage.setItem("orderConfigData", JSON.stringify(orderConfigData));
     }
 
-    document.getElementById("car-list").hidden = true;
-    buyForm.hidden = false;
+    document.getElementById("car-list").style.display = "none";
+    buyForm.style.display = "none";
 
     const batteriesSelect = document.getElementById("batteries");
     fetchAccesories("assets/parts/batteries.json", batteriesSelect);
@@ -497,8 +496,8 @@ returnButton.addEventListener("click", (e) => {
     "chosen accessories before adding",
     document.getElementById("chosen-accesories")
   );
-  document.getElementById("car-list").hidden = false;
-  document.getElementsByClassName("buy-form")[0].hidden = true;
+  document.getElementById("car-list").style.display = "none";
+  document.getElementsByClassName("buy-form")[0].style.display = "none";
 });
 
 const placeOrderButton = document.getElementsByClassName(`place-order-btn`)[0];
@@ -550,44 +549,46 @@ placeOrderButton.addEventListener("click", (e) => {
 
 });
 
-document.addEventListener('DOMContentLoaded', function() {
-  console.log('TEST PAGINATION')
-  const itemsPerPage = 5;
-  let currentPage = 1;
-  const listItems = document.querySelectorAll('#car-list li');
-  const totalPages = Math.ceil(listItems.length / itemsPerPage);
 
-  function showPage(page) {
-    console.log('TEST PAGINATION')
-    const start = (page - 1) * itemsPerPage;
-    const end = start + itemsPerPage;
-    listItems.forEach((item, index) => {
-      if (index >= start && index < end) {
-        item.style.display = '';
-      } else {
-        item.style.display = 'none';
-      }
-    });    
-    document.getElementById('page-info').textContent = `Page ${page} of ${totalPages}`;
-    
-    // document.getElementById('prev-btn').style.visibility = currentPage === 1 ? 'hidden' : 'visible';
-    // document.getElementById('next-btn').style.visibility = currentPage === totalPages ? 'hidden' : 'visible';
-  }
 
-  document.getElementById('prev-btn').addEventListener('click', function() {
-    if (currentPage > 1) {
-      currentPage--;
-      showPage(currentPage);
-    }
-  });
+// document.addEventListener('DOMContentLoaded', function() {
+//   console.log('TEST PAGINATION')
+//   const itemsPerPage = 4;
+//   let currentPage = 1;
+//   const listItems = document.querySelectorAll('#car-list li');
+//   const totalPages = Math.ceil(listItems.length / itemsPerPage);
+//   console.log('listItems',listItems,'totalPages',totalPages);
 
-  document.getElementById('next-btn').addEventListener('click', function() {
-    if (currentPage < totalPages) {
-      currentPage++;
-      showPage(currentPage);
-    }
-  });
+//   function showPage(page) {
+//     console.log('TEST PAGINATION')
+//     const start = (page - 1) * itemsPerPage;
+//     const end = start + itemsPerPage;
+//     listItems.forEach((item, index) => {
+//       if (index >= start && index < end) {
+//         item.style.display = '';
+//       } else {
+//         item.style.display = 'none';
+//       }
+//     });    
+//   // document.getElementById('page-info').textContent = `Page ${page} of ${totalPages}`;   
+//     // document.getElementById('prev-btn').style.visibility = currentPage === 1 ? 'hidden' : 'visible';
+//     // document.getElementById('next-btn').style.visibility = currentPage === totalPages ? 'hidden' : 'visible';
+//   }
 
-  // Initialize
-  showPage(currentPage);
-});
+//   document.getElementById('prev-btn').addEventListener('click', function() {
+//     if (currentPage > 1) {
+//       currentPage--;
+//       showPage(currentPage);
+//     }
+//   });
+
+//   document.getElementById('next-btn').addEventListener('click', function() {
+//     if (currentPage < totalPages) {
+//       currentPage++;
+//       showPage(currentPage);
+//     }
+//   });
+
+//   // Initialize
+//   showPage(currentPage);
+// });

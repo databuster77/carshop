@@ -4,11 +4,9 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="style.css" />
-    <script defer src="index.js"></script>
-    <script
-      src="https://kit.fontawesome.com/c8ffbd1647.js"
-      crossorigin="anonymous"
-    ></script>
+    <script defer src="index_new.js"></script>
+    <!-- <script defer src="index.js"></script> -->
+    <script src="https://kit.fontawesome.com/c8ffbd1647.js" crossorigin="anonymous"></script>
     <title>Document</title>
   </head>
 
@@ -19,115 +17,141 @@
         src="/assets/pictures/hanson-lu-956EmlIRARQ-unsplash.jpg"
         alt="car"
       />
-      <p id="intro"><span>KOMIS AUT ZŁOMEK</span><span>NAPĘDZANY TWOJE MARZENIA O NOWYM AUCIE...</span></p>
+      <p id="intro"><span>KOMIS AUT ZŁOMEK</span><span id="motto">NAPĘDZANY TWOJE MARZENIA O NOWYM AUCIE...</span></p>
     </header>
+
+    <div class="main-wrapper">
+      
     
+    <img
+        class="car-side"
+        src="/assets/pictures/olav-tvedt--oVaYMgBMbs-unsplash.jpg"
+        alt="car-left-side"
+      />
     <main>
       <div class="search">
         <form id="search-form" action="">
           <label for="search">Wyszukaj Markę</label>
           <input type="text" name="search" id="search" class="brand-search" />
         </form>
-      </div>
+      </div>    
 
       
-
-      <!-- <div class="wrapper"> -->
-      <!-- <img
-        class="car-side"
-        src="/assets/pictures/olav-tvedt--oVaYMgBMbs-unsplash.jpg"
-        alt="car-left-side"
-      /> -->
-      <!-- </div> -->
-      <div class="wrapper">
+      <div class="car-list-wrapper">
         <div class="car-list">
           <ul id="car-list" class="car-list-ul"></ul>
+          <!-- <div id="pagination-controls">
+            <button id="prev-btn">&lt;&lt;</button>
+            <span id="page-info"></span>
+            <button id="next-btn">&gt;&gt;</button>
+          </div> -->
         </div>
-        <div id="pagination-controls">
-          <button id="prev-btn">Previous</button>
-          <span id="page-info"></span>
-          <button id="next-btn">Next</button>
-        </div>
+        
         <form class="buy-form">
-          <fieldset disabled>
-            <div class="car-id">
-              <span class="item-att">Id:</span
-              ><span class="item-att-val">N/A</span>
+          <fieldset id= "order-car-details" disabled>
+            <div class="car-image">
+              <img class= "car-image-inner" src="assets\cars\citroenc3\z30781627IH,Citroen-C3-2024-r-.jpg" alt="car">
             </div>
-            <div class="brand">
-              <span class="item-att">Marka:</span
-              ><span class="item-att-val">N/A</span>
+            <div class="car-details">
+            <div class="car-id car-detail">
+              <span class="item-att">Id:</span>
+              <span class="item-att-val">N/A</span>
             </div>
-            <div class="car-name">
-              <span class="item-att">Nazwa:</span
-              ><span class="item-att-val">N/A</span>
+            <div class="brand car-detail">
+              <span class="item-att">Marka:</span>
+              <span class="item-att-val">N/A</span>
             </div>
-            <div class="year">
-              <span class="item-att">Moc silnika:</span
-              ><span class="item-att-val">N/A</span>
+            <div class="car-name car-detail">
+              <span class="item-att">Nazwa:</span>
+              <span class="item-att-val">N/A</span>
             </div>
-            <div class="power">
-              <span class="item-att">Rok produkcji:</span
-              ><span class="item-att-val">N/A</span>
+            <div class="year car-detail">
+              <span class="item-att">Moc silnika:</span>
+              <span class="item-att-val">N/A</span>
             </div>
-            <div class="milage">
-              <span class="item-att">Przebieg:</span
-              ><span class="item-att-val">N/A</span>
+            <div class="power car-detail">
+              <span class="item-att">Rok produkcji:</span>
+              <span class="item-att-val">N/A</span>
             </div>
-            <div class="price">
-              <span class="item-att">Cena:</span
-              ><span class="item-att-val">N/A</span>
+            <div class="milage car-detail">
+              <span class="item-att">Przebieg:</span>
+              <span class="item-att-val">N/A</span>
             </div>
+            <div class="price car-detail">
+              <span class="item-att">Cena:</span>
+              <span class="item-att-val">N/A</span>
+            </div>
+          </div>
           </fieldset>
+          <p>SPECYFIKACJA ZAMÓWIENIA</p>
           <fieldset id="order-details">
-            <input type="radio" name="financing" id="cash" value="true" />
+            <div class="financing order-details-inner">
+            <div class="order-details-inner-2">
+              <input type="radio" name="financing" id="cash" value="true" />
             <label for="cash">Gotówka</label>
+          </div>
+            <div class="order-details-inner-2">
             <input type="radio" name="financing" id="leasing" value="true" />
             <label for="leasing">Leasing</label>
-            <label for="first-name">Imię</label>
-            <input type="text" name="first-name" id="first-name" />
-            <label for="last-name">Nazwisko</label>
-            <input type="text" name="last-name" id="last-name" />
+          </div>
+          <div class="order-details-inner-2">
             <label for="delivery">Wybierz datę dostawy:</label>
             <input type="date" name="delivery" id="delivery" />
+          </div>
+          
+          </div>
+          
+          
+            <div class="client-data order-details-inner">
+              <div class="order-details-inner-2">
+            <label for="first-name">Imię</label>
+            <input type="text" name="first-name" id="first-name" />
+          </div>
+            <div class="order-details-inner-2">
+            <label for="last-name">Nazwisko</label>
+            <input type="text" name="last-name" id="last-name" />
+          </div>
+          </div>
+          
           </fieldset>
-
-          <fieldset>
+          <div class="parts">
+          <fieldset class="tires parts-inner">
             <select name="tires" id="tires"></select>
             <button class="add-order-btn" id="add-tires-btn">Dodaj</button>
           </fieldset>
 
-          <fieldset>
+          <fieldset class="oils parts-inner">
             <select name="oils" id="oils"></select>
             <button class="add-order-btn" id="add-oils-btn">Dodaj</button>
           </fieldset>
 
-          <fieldset>
+          <fieldset class="batteries parts-inner">
             <select name="batteries" id="batteries"></select>
             <button class="add-order-btn" id="add-batteries-btn">Dodaj</button>
           </fieldset>
-
+        </div>  
           <div id="accesories">
-            <p>Wybrane akcesoria:</p>
+            <p>WYBRANE AKCESORIA:</p>
             <ul id="chosen-accesories"></ul>
           </div>
           <div class="total-price">
             <p>WARTOŚĆ ZAMÓWIENIA ŁĄCZNIE:</p>
             <span id="total-price"></span>
           </div>
-          <button class="place-order-btn">Zamów</button>
-          <button class="return-list">Wróć do listy</button>
+          <div class="order-buttons">
+          <button class="place-order-btn order-buttons-btn">Zamów</button>
+          <button class="return-list order-buttons-btn">Wróć do listy</button>
+        </div>
         </form>
       </div>
-      <!-- <div class="wrapper"> -->
-      <!-- <img
+      
+    </main>
+    <img
         class="car-side"
         src="/assets/pictures/olav-tvedt--oVaYMgBMbs-unsplash_flipped.jpg"
         alt="car-right-side"
-      /> -->
-      <!-- </div> -->
-    </main>
-    
+      />
+    </div>
     <footer>
       <img id="logo" src="/assets/logo.webp" alt="logo" />
       <p id="visit-card">
