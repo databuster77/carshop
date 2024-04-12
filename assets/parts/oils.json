@@ -1,10 +1,12 @@
 [{"id":"ol_0",
+"type": "Olej",
 "brand":"Castrol",
 "name": "Castrol Speed",
 "capacity": 1.5,
 "price": 25
 },
 {"id":"ol_1",
+"type": "Olej",
 "brand":"Castrol",
 "name": "Castrol Viper",
 "capacity": 2.5,

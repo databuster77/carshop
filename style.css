@@ -36,7 +36,7 @@ p#intro span {
 }
 
 .car-side{
-  max-width: 12vw;
+  max-width: 15vw;
   object-fit: cover;
 }
 .main-wrapper{
@@ -46,7 +46,7 @@ p#intro span {
 main {
   margin: 30px auto;
   display: flex;
-  width: 1300px;
+  width: 1350px;
   justify-content: space-evenly;
   background-color: rgb(242, 243, 245);  
   box-shadow: 5px 5px 24px 0px rgba(66, 68, 90, 1);
@@ -67,15 +67,16 @@ main {
 }
 
 ul#car-list {
-  /* width: 1000px; */
+  width: 1100px;
   flex-wrap: wrap;
   display: flex;
   list-style-type: none;
   justify-content: end;
   margin-right: 40px;
   /* background-color: red; */
-  max-height: 930px; /* Adjust based on your needs */
+  max-height: 1000px; /* Adjust based on your needs */
   overflow-y: auto;
+
 }
 
 ul#car-list > li {
@@ -92,14 +93,44 @@ ul#car-list > li {
 
 .car-main-picture {
   height: 250px;
-  width: 350px;
+  object-fit: cover;  
+  /* width: 350px; */
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
+  margin-bottom: 15px;
 }
+
 .description {
   display: flex;
   width: 20vw;
   flex-direction: column;
 }
 
+.item-att{
+  background-color: rgb(168, 153, 153);
+  color:whitesmoke; 
+  border-radius: 5px;
+  padding: 5px;
+  display: inline-block;
+  width: 110px;
+  margin-right: 25px;
+ 
+}
+
+#car-list .car-name{
+  display: flex;
+  justify-content: center;
+  background-color: blue;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+  font-size: 30px;
+  color: ghostwhite;
+  text-transform:uppercase;
+}
+
+.order-config{
+  margin: 10px 0;
+}
 /* #pagination-controls {
     text-align: center;
   margin-top: 20px;
@@ -137,6 +168,7 @@ ul#car-list > li {
   border: none;  
   box-shadow: 5px 5px 24px 0px rgba(66, 68, 90, 1);
   background-color: whitesmoke;
+  margin: 5px 0 30px 0;
 }
 
 .car-image-inner{
@@ -150,16 +182,6 @@ ul#car-list > li {
 }
 .car-detail{
   margin: 5px 0;
-}
-.item-att{
-  background-color: rgb(168, 153, 153);
-  color:whitesmoke; 
-  border-radius: 5px;
-  padding: 5px;
-  display: inline-block;
-  width: 110px;
-  margin-right: 25px;
- 
 }
 
 #order-details{
@@ -178,7 +200,9 @@ ul#car-list > li {
 }
 
 .order-details-inner-2{margin: 0 15px;}
+#accesories{display: none;}
 .parts{display: flex;
+  flex-direction: column;
   justify-content: space-evenly;
   
 }

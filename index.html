@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="style.css" />
-    <script defer src="index_new.js"></script>
+    <script type="module" defer src="index_new.js"></script>
     <!-- <script defer src="index.js"></script> -->
     <script src="https://kit.fontawesome.com/c8ffbd1647.js" crossorigin="anonymous"></script>
     <title>Document</title>
@@ -50,7 +50,7 @@
         <form class="buy-form">
           <fieldset id= "order-car-details" disabled>
             <div class="car-image">
-              <img class= "car-image-inner" src="assets\cars\citroenc3\z30781627IH,Citroen-C3-2024-r-.jpg" alt="car">
+              <!-- <img class= "car-image-inner" src="assets\cars\citroenc3\z30781627IH,Citroen-C3-2024-r-.jpg" alt="car"> -->
             </div>
             <div class="car-details">
             <div class="car-id car-detail">
@@ -115,6 +115,7 @@
           
           </fieldset>
           <div class="parts">
+            <p>WYBIERZ AKCESORIA:</p>
           <fieldset class="tires parts-inner">
             <select name="tires" id="tires"></select>
             <button class="add-order-btn" id="add-tires-btn">Dodaj</button>
@@ -135,8 +136,7 @@
             <ul id="chosen-accesories"></ul>
           </div>
           <div class="total-price">
-            <p>WARTOŚĆ ZAMÓWIENIA ŁĄCZNIE:</p>
-            <span id="total-price"></span>
+            <p>WARTOŚĆ ZAMÓWIENIA ŁĄCZNIE: <span id="total-price"></span></p>            
           </div>
           <div class="order-buttons">
           <button class="place-order-btn order-buttons-btn">Zamów</button>

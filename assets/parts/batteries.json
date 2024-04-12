@@ -1,9 +1,11 @@
 [{"id":"ak_0",
+"type": "Akumulator",
 "brand":"Polska",
 "name": "Polska Super",
 "price": 65
 },
 {"id":"ak_1",
+"type": "Akumulator",
 "brand":"Chińska",
 "name": "Chińska Podróba",
 "price": 25
