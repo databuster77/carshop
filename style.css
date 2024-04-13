@@ -92,12 +92,15 @@ ul#car-list > li {
 }
 
 .car-main-picture {
-  height: 250px;
+  height: 200px;
+  width: 300px;
   object-fit: cover;  
   /* width: 350px; */
   border-bottom-left-radius: 15px;
   border-bottom-right-radius: 15px;
+  margin: 0 auto;
   margin-bottom: 15px;
+
 }
 
 .description {

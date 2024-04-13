@@ -1,7 +1,7 @@
 import { fetchAccesoryPrice } from "./fetchAccessories.js";
 import { changeItemQuantity, deletItem } from "./modifyChosenItems.js";
 import { recalculateOrderPrice } from "./recalculatePrice.js";
-import { fetchCarPrice } from "./fetchCarPrice.js";
+
 
 export const addSelectionToBasket = async (e, carId) => {
     e.preventDefault();    
