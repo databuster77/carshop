@@ -287,3 +287,45 @@ fetch("assets/cars/cars.json")
           }
       });
   });
+
+
+  document.addEventListener('DOMContentLoaded', function () {
+    const list = document.getElementById('car-list');
+    const items = list.querySelectorAll('li');
+    const pageCount = 4;  // Number of items per page
+    let currentPage = 1;
+
+    function updateList() {
+        const totalPage = Math.ceil(items.length / pageCount);
+        document.getElementById('page-info').textContent = `Page ${currentPage} of ${totalPage}`;
+        const start = (currentPage - 1) * pageCount;
+        const end = start + pageCount;
+        items.forEach((item, index) => {
+            if (index >= start && index < end) {
+                item.style.display = 'flex';
+            } else {
+                item.style.display = 'none';
+            }
+        });
+    }
+
+    function nextPage() {
+        const totalPage = Math.ceil(items.length / pageCount);
+        if (currentPage < totalPage) {
+            currentPage++;
+            updateList();
+        }
+    }
+
+    function prevPage() {
+        if (currentPage > 1) {
+            currentPage--;
+            updateList();
+        }
+    }
+
+    document.getElementById('next-btn').addEventListener('click', nextPage);
+    document.getElementById('prev-btn').addEventListener('click', prevPage);
+
+    updateList();
+});

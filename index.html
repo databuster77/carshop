@@ -12,12 +12,15 @@
 
   <body>
     <header>
-      <img
-        id="head-car"
-        src="/assets/pictures/hanson-lu-956EmlIRARQ-unsplash.jpg"
-        alt="car"
-      />
-      <p id="intro"><span>KOMIS AUT ZŁOMEK</span><span id="motto">NAPĘDZANY TWOJE MARZENIA O NOWYM AUCIE...</span></p>
+      <img id="head-car" src="/assets/pictures/hanson-lu-956EmlIRARQ-unsplash.jpg" alt="car"/>
+      <div id="intro">        
+        <img id="car-wheel" src="/assets/pictures/wheel.png" alt="car wheel">
+        <div class="intro-wrapper">
+        <span id="motto1" class="motto">KOMIS AUT ZŁOMEK</span>
+        <span id="motto2" class="motto">NAPĘDZANY TWOJE MARZENIA</span>
+        <span id="motto3" class="motto">O NOWYM AUCIE...</span>
+        </div>        
+      </div>
     </header>
 
     <div class="main-wrapper">
@@ -46,7 +49,16 @@
             <button id="next-btn">&gt;&gt;</button>
           </div> -->
         </div>
-        
+        <div class="car-list">
+          <ul id="car-list" class="car-list-ul" style="display: flex; flex-wrap: wrap;">
+              <!-- List items go here -->
+          </ul>
+          <div id="pagination-controls">
+              <button id="prev-btn"><<</button>
+              <span id="page-info"></span>
+              <button id="next-btn">>></button>
+          </div>
+      </div>
         <form class="buy-form">
           <fieldset id= "order-car-details" disabled>
             <div class="car-image">
@@ -161,7 +173,7 @@
         <span>KONTAKT:</span>
         <span>666-66 HEL UL. STANISŁAWA ANIOŁA 4</span>
         <span>TEL: +48 666 666 666</span>
-        <span>MAIL: ZŁOMEK-AUTO@HEL.COM</span>
+        <span>MAIL: ZŁOMEK-AUTO@VERY-LIMITED.COM</span>
 
       </p>
     </footer>
