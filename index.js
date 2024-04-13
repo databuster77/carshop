@@ -47,7 +47,48 @@ fetch("assets/cars/cars.json")
       li.innerHTML = liContent;
       ul.appendChild(li);
     });
-  })
+  }).then(()=>{
+    const ul = document.getElementById("car-list");
+      const items = ul.querySelectorAll('li');
+    
+      const pageCount = 4;  
+      let currentPage = 1;
+  
+      const updateList = () => {
+          const totalPage = Math.ceil(items.length / pageCount);
+          document.getElementById('page-info').textContent = `Strona ${currentPage} z ${totalPage}`;
+          const start = (currentPage - 1) * pageCount;
+          const end = start + pageCount;
+          items.forEach((item, index) => {
+              if (index >= start && index < end) {
+                  item.style.display = 'flex';
+              } else {
+                  item.style.display = 'none';
+              }
+          });
+      }
+  
+      const nextPage = () => {
+          const totalPage = Math.ceil(items.length / pageCount);
+          if (currentPage < totalPage) {
+              currentPage++;
+              updateList();
+          }
+      }
+  
+      const prevPage = () => {
+          if (currentPage > 1) {
+              currentPage--;
+              updateList();
+          }
+      }
+  
+      document.getElementById('next-btn').addEventListener('click', nextPage);
+      document.getElementById('prev-btn').addEventListener('click', prevPage);
+  
+      updateList();
+    }
+  )
   .catch((error) => {
     console.error("There was a problem with your fetch operation:", error);
   });
@@ -141,6 +182,9 @@ fetch("assets/cars/cars.json")
                 }
               );
             });
+            if (chosenCar.chosen_accesories.length>0) {
+            document.getElementById("accesories").style.display="block";
+            }
           };
           
           const orderDetails = document.getElementById("order-details");
@@ -175,6 +219,7 @@ fetch("assets/cars/cars.json")
       buyForm.style.display = "flex";
       document.querySelector('main').style.width = '800px';
       document.querySelector('main').style.justifyContent = 'center';
+      document.getElementById("pagination-controls").style.display = "none";
   
       const batteriesSelect = document.getElementById("batteries");
       fetchAccesories("assets/parts/batteries.json", batteriesSelect);
@@ -191,12 +236,15 @@ fetch("assets/cars/cars.json")
     if (e.target && e.target.id === "add-batteries-btn") {
       const carId = e.target.closest(".buy-form").dataset.carId;
       addSelectionToBasket(e, carId);
+      document.getElementById("accesories").style.display="block";
     } else if (e.target && e.target.id === "add-oils-btn") {
       const carId = e.target.closest(".buy-form").dataset.carId;
       addSelectionToBasket(e, carId);
+      document.getElementById("accesories").style.display="block";
     } else if (e.target && e.target.id === "add-tires-btn") {
       const carId = e.target.closest(".buy-form").dataset.carId;
       addSelectionToBasket(e, carId);
+      document.getElementById("accesories").style.display="block";
     }
   });
 
@@ -228,14 +276,21 @@ fetch("assets/cars/cars.json")
     document.querySelector('main').style.width = '1350px';
     document.querySelector('main').style.justifyContent = 'space-evenly';
     document.querySelector(".buy-form").querySelector('.car-image-inner').remove();
+    document.getElementById("pagination-controls").style.display = "block";
+    document.getElementById("accesories").style.display="none";
   
   });
 
   // adding event listeners for button place order  
   const placeOrderButton = document.getElementsByClassName(`place-order-btn`)[0];
   placeOrderButton.addEventListener("click", (e) => {
-    e.preventDefault();  
-    const radioFields = document.getElementById("order-details").querySelectorAll('input[name="financing"]');        
+    e.preventDefault();
+    const buyForm = document.getElementsByClassName("buy-form")[0];  
+    const existingErrors = document.querySelector('.validation-errors');
+    if (existingErrors) {
+        existingErrors.remove();
+    }
+    const radioFields = document.getElementById("order-details").querySelectorAll('input[name="financing"]');            
     const inputFields = document.getElementById("order-details").querySelectorAll('input:not([name="financing"])');
     const validationErrors ={};
     inputFields.forEach(input=>{
@@ -244,11 +299,12 @@ fetch("assets/cars/cars.json")
       } 
     })
     let radioFieldsChecked = [...radioFields].map(input=>input.checked);
-    if (!radioFieldsChecked.every(Boolean)){
+    
+    if (!radioFieldsChecked.some(Boolean)){
       validationErrors["radio_buttons"] = true
     }
-      if (validationErrors) {
-          const buyForm = document.getElementsByClassName("buy-form")[0];          
+    if (Object.keys(validationErrors).length > 0) {          
+        
           let divErrors = document.createElement('div');
           divErrors.className = 'validation-errors';
           Object.entries(validationErrors).forEach(([key, value]) => {              
@@ -263,12 +319,15 @@ fetch("assets/cars/cars.json")
             });
           buyForm.appendChild(divErrors);
       }
+      else{
+        let carId = document.querySelector('.car-id').querySelector('.item-att-val').textContent;        
+        let orderConfigData = JSON.parse(localStorage.getItem('orderConfigData'));        
+        let chosenCar = orderConfigData.find((car) => car.id === carId);        
+        localStorage.setItem('orderedCar', chosenCar);            
+        window.location.href = 'order-confirmation.html';   
+      }
     
-    let carId = document.querySelector('.car-id').querySelector('.item-att-val').textContent;
-    const orderConfigData = JSON.parse(localStorage.getItem(orderConfigData));
-    let chosenCar = orderConfigData.find((car) => car.id === carId);
-    localStorage.setItem('orderedCar', chosenCar);    
-    window.location.href = 'order-confirmation.html';    
+     
   
   });
 
@@ -289,43 +348,3 @@ fetch("assets/cars/cars.json")
   });
 
 
-  document.addEventListener('DOMContentLoaded', function () {
-    const list = document.getElementById('car-list');
-    const items = list.querySelectorAll('li');
-    const pageCount = 4;  // Number of items per page
-    let currentPage = 1;
-
-    function updateList() {
-        const totalPage = Math.ceil(items.length / pageCount);
-        document.getElementById('page-info').textContent = `Page ${currentPage} of ${totalPage}`;
-        const start = (currentPage - 1) * pageCount;
-        const end = start + pageCount;
-        items.forEach((item, index) => {
-            if (index >= start && index < end) {
-                item.style.display = 'flex';
-            } else {
-                item.style.display = 'none';
-            }
-        });
-    }
-
-    function nextPage() {
-        const totalPage = Math.ceil(items.length / pageCount);
-        if (currentPage < totalPage) {
-            currentPage++;
-            updateList();
-        }
-    }
-
-    function prevPage() {
-        if (currentPage > 1) {
-            currentPage--;
-            updateList();
-        }
-    }
-
-    document.getElementById('next-btn').addEventListener('click', nextPage);
-    document.getElementById('prev-btn').addEventListener('click', prevPage);
-
-    updateList();
-});

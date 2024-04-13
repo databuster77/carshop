@@ -94,6 +94,6 @@ export const addSelectionToBasket = async (e, carId) => {
         accesoryPrice * totalAccesoryQuantityRecalculated;
       recalculateOrderPrice(carId);
     }
-    document.getElementById("accesories").style.display="block";
+    
   };
   
