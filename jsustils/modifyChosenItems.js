@@ -15,8 +15,13 @@ export const changeItemQuantity = (ops, button, accesoryPrice, carId) => {
           parseInt(quantityInput.textContent) + 1;
       } else if (ops === "subtract") {
         console.log("clicked LESS");
-        totalAccesoryQuantityRecalculated =
+        if (parseInt(quantityInput.textContent)>1){
+          totalAccesoryQuantityRecalculated =
           parseInt(quantityInput.textContent) - 1;
+        } else{
+          totalAccesoryQuantityRecalculated = 1
+        }
+        
       }
       quantityInput.textContent = totalAccesoryQuantityRecalculated;
       accesoryTotalPrice.textContent =
