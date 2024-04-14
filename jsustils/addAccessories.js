@@ -56,7 +56,7 @@ export const addSelectionToBasket = async (e, carId) => {
       let totalAccesoryQuantityRecalculated = 0;
       const li = document.createElement("li");
       li.className = "chosen-accesory";
-      li.innerHTML = `<span class="accesory-id">${selectedItemValue}</span>
+      li.innerHTML = `<span class="accesory-id" display=none>${selectedItemValue}</span>
                           <span class="accesory-type">${accesoryType}</span>
                           <span class="assesory-name">${accesoryName}</span>
                           <span class="accesory-price">Cena szt.: ${accesoryPrice} PLN</span>
@@ -65,7 +65,8 @@ export const addSelectionToBasket = async (e, carId) => {
                           <button class="accesory-less">-</button>
                           <button class="accesory-delete">Usuń</button>
                           <span class="accesory-total-price">Cena łącznie: <span class="accesory-total-price-amount"></span> PLN</span>`;
-      ul.appendChild(li);
+                          li.querySelector('.accesory-id').style.display="none";
+                          ul.appendChild(li);
       let lastAddedLi = ul.lastElementChild;
       let buttonMore = lastAddedLi.querySelector(".accesory-more");
       let buttonLess = lastAddedLi.querySelector(".accesory-less");

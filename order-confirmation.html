@@ -1,41 +1,113 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="style-confimation.css" />
+    <!-- <script type="module" defer src="index.js"></script> -->
+    <script defer src="confimation.js"></script>
+    <!-- <script src="https://kit.fontawesome.com/c8ffbd1647.js" crossorigin="anonymous"></script> -->
+    <title>Document</title>
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="style-confimation.css" />
-  <script type="module" defer src="confimation.js"></script>    
-  <title>Document</title>
-</head>
+  <body>
+    <header>
+      <img id="head-car" src="/assets/pictures/hanson-lu-956EmlIRARQ-unsplash.jpg" alt="car"/>
+      <div id="intro">        
+        <img class="car-wheel" src="/assets/pictures/wheel.png" alt="car wheel">
+        <div class="intro-wrapper">
+        <span id="motto1" class="motto">KOMIS AUT ZŁOMEK</span>
+        <span id="motto2" class="motto">NAPĘDZANY TWOJE MARZENIA</span>
+        <span id="motto3" class="motto">O NOWYM AUCIE...</span>
+        </div>
+        <img class="car-wheel" src="/assets/pictures/wheel.png" alt="car wheel">        
+      </div>
+    </header>
 
-<body>
-  <header>
-    <img id="head-car" src="/assets/pictures/hanson-lu-956EmlIRARQ-unsplash.jpg" alt="car" />
-    <p id="intro"><span>KOMIS AUT ZŁOMEK</span><span id="motto">NAPĘDZANY TWOJE MARZENIA O NOWYM AUCIE...</span></p>
-  </header>
-
-  <div class="main-wrapper">
-    <img class="car-side" src="/assets/pictures/olav-tvedt--oVaYMgBMbs-unsplash.jpg" alt="car-left-side" />
+    <div class="main-wrapper">
+      
+    
+    <img
+        class="car-side"
+        src="/assets/pictures/olav-tvedt--oVaYMgBMbs-unsplash.jpg"
+        alt="car-left-side"
+      />
     <main>
-      <h1>GRATULACJE ZAMOWILES AUTO</h1>
-      <button class="return-main-page">Powrot</button>
+      <div class="acknowledge">
+      <h1 id="acknowledge1" class="acknowledge-inner"></h1>
+      <h1 id="acknowledge2" class="acknowledge-inner"></h1>      
+    </div>
+      <div class="car-list-wrapper">
+        <form class="buy-form">
+          <fieldset id= "order-car-details" disabled>
+            <div class="car-image">
+              <!-- <img class= "car-image-inner" src="assets\cars\citroenc3\z30781627IH,Citroen-C3-2024-r-.jpg" alt="car"> -->
+            </div>
+            <div class="car-details">
+            <div class="car-id car-detail">
+              <span class="item-att">Id:</span>
+              <span class="item-att-val">N/A</span>
+            </div>
+            <div class="brand car-detail">
+              <span class="item-att">Marka:</span>
+              <span class="item-att-val">N/A</span>
+            </div>
+            <div class="car-name car-detail">
+              <span class="item-att">Nazwa:</span>
+              <span class="item-att-val">N/A</span>
+            </div>
+            <div class="power car-detail">
+              <span class="item-att">Moc silnika:</span>
+              <span class="item-att-val">N/A</span>
+            </div>
+            <div class="year car-detail">
+              <span class="item-att">Rok produkcji:</span>
+              <span class="item-att-val">N/A</span>
+            </div>
+            <div class="milage car-detail">
+              <span class="item-att">Przebieg:</span>
+              <span class="item-att-val">N/A</span>
+            </div>
+            <div class="price car-detail">
+              <span class="item-att">Cena:</span>
+              <span class="item-att-val">N/A</span>
+            </div>
+          </div>
+          </fieldset>
+          
+          <div id="accesories">
+            <p>WYBRANE AKCESORIA:</p>
+            <ul id="chosen-accesories"></ul>
+          </div>
+          <div class="total-price">
+            <p>WARTOŚĆ ZAMÓWIENIA ŁĄCZNIE: <span id="total-price"></span></p>            
+          </div>
+          <div class="order-buttons">
+
+          <button class="return-list order-buttons-btn">Wróć do listy</button>
+        </div>
+        </form>  
+      </div>
     </main>
-    <img class="car-side" src="/assets/pictures/olav-tvedt--oVaYMgBMbs-unsplash_flipped.jpg" alt="car-right-side" />
-  </div>
-  <footer>
-    <img id="logo" src="/assets/logo.webp" alt="logo" />
-    <p id="visit-card">
-      <span>ZŁOMEK AUTO VERY LIMITED SP. Z O.O.</span>
-      <span>NIEOGRANICZONE MARZENIA...</span>
-      <span>OGRANICZONA GWARANCJA</span>
-      <span>KONTAKT:</span>
-      <span>666-66 HEL UL. STANISŁAWA ANIOŁA 4</span>
-      <span>TEL: +48 666 666 666</span>
-      <span>MAIL: ZŁOMEK-AUTO@HEL.COM</span>
+    <img
+        class="car-side"
+        src="/assets/pictures/olav-tvedt--oVaYMgBMbs-unsplash_flipped.jpg"
+        alt="car-right-side"
+      />
+    </div>
+    <footer>
+      <img id="logo" src="/assets/logo.webp" alt="logo" />
+      <p id="visit-card">
+        <span>ZŁOMEK AUTO VERY LIMITED SP. Z O.O.</span>
+        <span>NIEOGRANICZONE MARZENIA...</span>
+        <span>OGRANICZONA GWARANCJA</span>
+        <span>KONTAKT:</span>
+        <span>666-66 HEL UL. STANISŁAWA ANIOŁA 4</span>
+        <span>TEL: +48 666 666 666</span>
+        <span>MAIL: ZŁOMEK-AUTO@VERY-LIMITED.COM</span>
 
-    </p>
-  </footer>
-</body>
-
+      </p>
+    </footer>
+  </body>
 </html>

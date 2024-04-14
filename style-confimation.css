@@ -1,75 +1,203 @@
+@import url('https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Black+Ops+One&family=Bungee&family=Indie+Flower&family=Jersey+15&family=Jersey+25&family=Pixelify+Sans:wght@400..700&family=Rubik+Mono+One&family=Russo+One&family=Seymour+One&family=Tac+One&family=Titan+One&display=swap');
+
+
 * {
-    box-sizing: border-box;
-    margin: 0;
+  box-sizing: border-box;
+  margin: 0;
+  background-color: rgb(229, 232, 238);  
+}
+
+header {
+  display:flex;
+  flex-direction: column;
+
+}
+
+#head-car {
+  height: 40vh;
+  object-fit: cover;
+}
+
+div#intro {
+  display: flex;    
+  margin: 20px auto;
+  
+}
+.car-wheel{
+  width: 120px;
+  height: 120px;  
+  animation: spin 2s linear infinite;
+  margin: 20px;
+  
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
   }
-  
-  
-  
-  header {
-    display: flex;
-    flex-direction: column;
+  to {
+    transform: rotate(360deg);
   }
-  
-  #head-car {
-    max-height: 40vh;
-    object-fit: cover;
-  }
-  
-  p#intro {
-  
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    margin: 20px auto;  
-    width: 900px;  
-  }
-  
-  p#intro span {  
-    font-size: 30px;
-    color: black;
-    font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
-    padding: 20px;
-  }
-  
-  #motto{
-    text-align: right;
-  }
-  
-  .car-side{
-    max-width: 15vw;
-    object-fit: cover;
-  }
-  .main-wrapper{
-    display: flex;
-    
-    }
-  main {
-    margin: 30px auto;
-    display: flex;
-    flex-direction: column;
-    width: 1350px;
-    justify-content: space-evenly;
-    background-color: rgb(242, 243, 245);  
-    box-shadow: 5px 5px 24px 0px rgba(66, 68, 90, 1);
+}
+
+.intro-wrapper{display: flex;
+flex-direction: column;
+width: 700px;
+}
+
+div#intro span {  
+  font-size: 30px;  
+  color: rgb(0, 84, 206);  
+  font-family: "Pixelify Sans", sans-serif;  
+  font-weight: bold;
+  padding: 5px;  
+}
+
+#motto2{text-align: center;}
+#motto3{text-align: end;}
+
+.car-side{
+  max-width: 15vw;
+  object-fit: cover;
+}
+
+.main-wrapper{
+  display: flex;  
   }
 
+main {
+  margin: 30px auto;
+  display: flex;
+  flex-direction: column;  
+  justify-content: center;
+}
+.acknowledge{
+  margin-bottom: 20px;  
+}
+
+#acknowledge1, #acknowledge2{
+  text-align: center;
+}
+.car-list-wrapper{
+  border-radius: 15px;  
+  box-shadow: 5px 5px 24px 0px rgba(66, 68, 90, 1);  
+}
+
+.buy-form {
+  margin: 20px auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 750px;
+  font-family: "Jersey 25", sans-serif;  
+  font-size: 20px;
+  font-weight: bold;  
+}
+
+#order-car-details{
+  display: flex;
+  justify-content: space-evenly;
+  border: none;  
+  box-shadow: 5px 5px 24px 0px rgba(66, 68, 90, 1);
+  background-color: whitesmoke;
+  margin: 5px 0 30px 0; 
+}
+
+.car-image-inner{
+  height: 250px;
+  width: 350px;
+
+}
+.car-details{
+  display: flex;
+  flex-direction: column;  
+}
+.car-detail{
+  margin: 5px 0;
+}
+
+#order-details{
+  display: flex;
+  flex-direction: column;
+  border: none;  
+}
+
+.order-details-inner{
+  margin: 10px 0;
+  display: flex;
+  justify-content: center;
+}
+
+.order-details-inner-2{margin: 0 15px;}
+
+.order-details-inner-2 input{
+  border: 2px solid #ccc;
+  border-radius: 5px;
+  background-color: white;
+  cursor: pointer;  
+  padding: 2px;
+  color: rgb(0, 84, 206);;
+}
+
+#accesories{
+  border: none;
+  margin: 10px 0;
+  display: flex;
+  flex-direction: column;
+}
+
+
+.total-price{
+  display: flex;
+  justify-content: center;
   
+}
+
+.total-price p, #acknowledge1, #acknowledge2{
+  color:  rgb(0, 84, 206);  
+  font-family: "Jersey 25", sans-serif;
+  font-size: 25px;    
+  padding: 10px;  
+  margin: 5px ;
+}
+
+.order-buttons{
+  display: flex;
+  justify-content: space-around;
+  margin: 10px;  
+}
+
+.order-buttons-btn{
+  border: none;    
+  padding: 15px;
+  border-radius: 15px;
+  box-shadow: 3px 3px 24px 0px rgb(105, 132, 173);
+  background-color: rgb(0, 84, 206);
+  border-radius: 10px;
+  padding: 10px;
+  color: white;
+  text-transform: uppercase;
+  font-family: "Jersey 25", sans-serif;
+  font-size: 25px;  
+}
+
 footer {
-    margin: 20px 0;
-    display: flex;
-    justify-content: center;
-    color: black;
-  }
-  
-  #logo {
-    width: 200px;
-    height: auto;
-  }
-  
-  #visit-card {
-    display: flex;
-    flex-direction: column;
-    margin-left: 30px;
-  }
-  
-  
+  margin: 20px 0;
+  display: flex;
+  justify-content: center;
+  color: black;
+}
+
+#logo {
+  width: 200px;
+  height: auto;
+}
+
+#visit-card {
+  display: flex;
+  flex-direction: column;
+  color: rgb(0, 84, 206);
+  margin-left: 30px;  
+  font-family: "Russo One", sans-serif;
+}
+

@@ -24,19 +24,23 @@ export const recalculateOrderPrice = async (carId) => {
           let accesoryId = li.querySelector(".accesory-id").textContent;
           let accesoryType = li.querySelector(".accesory-type").textContent;
           let assesoryName = li.querySelector(".assesory-name").textContent;
-          let accesoryQuantity =
-            li.querySelector("#accesory-quantity").textContent;
+          let accesoryQuantity = li.querySelector("#accesory-quantity").textContent;          
+          let accesoryTotalPrice = li.querySelector(".accesory-total-price-amount").textContent;          
+          
           let accesoryData = {
             accesoryId,
             accesoryType,
             assesoryName,
             accesoryQuantity,
+            accesoryTotalPrice
+            
           };
           return accesoryData;
         });
   
         console.log("accesoriesData", accesoriesData);
         chosenCar["chosen_accesories"] = accesoriesData;
+        chosenCar["total_price"] = totalOrderPriceRecalculated;
         localStorage.setItem("orderConfigData", JSON.stringify(orderConfigData));
         console.log("added items to localStorage");
       }

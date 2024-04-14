@@ -10,30 +10,32 @@
 
 
 header {
-  display: flex;
+  display:flex;
   flex-direction: column;
+
 }
 
 #head-car {
-  max-height: 40vh;
+  height: 40vh;
   object-fit: cover;
 }
 
 div#intro {
   display: flex;  
-  justify-content: space-around;  
-  width: 1500px;  
-  align-items:center;
+  /* justify-content: center;   */
+  /* width: 1000px;   */
+  /* align-items:center; */
   margin: 20px auto;
-  position: relative;
+  /* position: relative; */
 }
-#car-wheel{
-  width: 200px;
-  height: 200px;
-  position: absolute;
-  /* animation: spin 2s linear infinite; */
-  animation: spin 2s linear infinite, moveHorizontally 4s linear infinite;
-  z-index: 1;
+.car-wheel{
+  width: 120px;
+  height: 120px;
+  /* position: absolute; */
+  animation: spin 2s linear infinite;
+  /* animation: spin 2s linear infinite, moveHorizontally 4s linear infinite; */
+  margin: 20px;
+  /* z-index: 1; */
 }
 
 @keyframes spin {
@@ -57,12 +59,14 @@ div#intro {
 .intro-wrapper{display: flex;
 flex-direction: column;
 width: 700px;
-z-index: 2;}
+
+/* z-index: 2; */
+}
 
 div#intro span {  
-  font-size: 40px;  
+  font-size: 30px;  
   color: rgb(0, 84, 206);
-  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+  /* font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif; */
   /* font-family: "Jersey 25", sans-serif;   */
   /* font-family: "Russo One", sans-serif; */
   /* font-family: "Black Ops One", system-ui; */
@@ -70,7 +74,7 @@ div#intro span {
   font-family: "Pixelify Sans", sans-serif;
   /* font-family: "Rubik Mono One", monospace; */
   font-weight: bold;
-  padding: 20px;  
+  padding: 5px;  
 }
 
 #motto2{text-align: center;}
@@ -82,14 +86,13 @@ div#intro span {
 }
 .main-wrapper{
   display: flex;
-  
-  
   }
+
 main {
   margin: 30px auto;
   display: flex;
   flex-direction: column;
-  width: 1350px;
+  width: 950px;
   justify-content: center;
   /* background-color: rgb(242, 243, 245);   */
   
@@ -139,7 +142,7 @@ main {
 }
 
 ul#car-list {
-  width: 1100px;
+  /* width: 1100px; */
   flex-wrap: wrap;
   display: flex;
   list-style-type: none;
@@ -168,7 +171,7 @@ ul#car-list > li:hover{box-shadow: 5px 5px 24px 0px rgba(66, 68, 90, 1);
 
 .car-main-picture {
   height: 200px;
-  width: 300px;
+  width: 250px;
   object-fit: cover;  
   /* width: 350px; */
   border-bottom-left-radius: 15px;
@@ -276,15 +279,9 @@ ul#car-list > li:hover{box-shadow: 5px 5px 24px 0px rgba(66, 68, 90, 1);
   flex-direction: column;
   justify-content: center;
   width: 750px;
-  font-family: "Jersey 25", sans-serif;
-  /* font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; */
+  font-family: "Jersey 25", sans-serif;  
   font-size: 20px;
-  font-weight: bold;
-  /* border: none;   */
-  
-  
-    
-  
+  font-weight: bold;        
 }
 
 #order-car-details{
@@ -297,11 +294,9 @@ ul#car-list > li:hover{box-shadow: 5px 5px 24px 0px rgba(66, 68, 90, 1);
   
 }
 
-
 .car-image-inner{
   height: 250px;
   width: 350px;
-
 }
 .car-details{
   display: flex;
@@ -354,10 +349,30 @@ ul#car-list > li:hover{box-shadow: 5px 5px 24px 0px rgba(66, 68, 90, 1);
   border: none;
 }
 
+
 #accesories{
   border: none;
   margin: 10px 0;
   display: none;
+}
+#chosen-accesories{list-style-type: none;
+  display: flex;
+  flex-direction: column;  
+}
+
+#chosen-accesories li{margin: 5px 0;}
+
+.accesory-delete, .accesory-more, .accesory-less{
+  border: none;    
+  padding: 3px 10px;  
+  border-radius: 15px;
+  box-shadow: 2px 2px 5px 0px rgb(105, 132, 173);
+  background-color: rgb(0, 84, 206);
+  border-radius: 5px;  
+  color: white;
+  text-transform: uppercase;
+  font-family: "Jersey 25", sans-serif;
+  font-size: 18px;  
 }
 
 .add-order-btn{

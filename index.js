@@ -30,10 +30,10 @@ fetch("assets/cars/cars.json")
                             <div class="brand">
                             <span class="item-att">Marka:</span><span class="item-att-val">${item.car_brand}</span>
                             </div>
-                            <div class="year">
+                            <div class="power">
                             <span class="item-att">Moc silnika:</span><span class="item-att-val">${item.engine_power} KM</span>
                             </div>
-                            <div class="power">
+                            <div class="year">
                             <span class="item-att">Rok produkcji:</span><span class="item-att-val">${item.manufacture_year}</span>
                             </div>
                             <div class="milage">
@@ -134,6 +134,7 @@ fetch("assets/cars/cars.json")
         engine_power: power,
         mileage: milage,
         price: price,
+        total_price: price,
       };
       let orderConfigData = JSON.parse(localStorage.getItem("orderConfigData"));
   
@@ -156,6 +157,8 @@ fetch("assets/cars/cars.json")
                               <button class="accesory-less">-</button>
                               <button class="accesory-delete">Usuń</button>
                               <span class="accesory-total-price">Cena łącznie: <span class="accesory-total-price-amount"></span> PLN</span>`;
+li.querySelector('.accesory-price').style.display = "none";                              
+li.querySelector('.accesory-id').style.display = "none";                              
               ul.appendChild(li);
               const buttonMore = li.querySelector(".accesory-more");
               const buttonLess = li.querySelector(".accesory-less");
@@ -273,7 +276,7 @@ fetch("assets/cars/cars.json")
     document.getElementById("car-list").style.display = "flex";
     document.getElementsByClassName("buy-form")[0].style.display = "none";
     document.getElementById('search-form').style.display = "flex";
-    document.querySelector('main').style.width = '1350px';
+    document.querySelector('main').style.width = '950px';
     document.querySelector('main').style.justifyContent = 'space-evenly';
     document.querySelector(".buy-form").querySelector('.car-image-inner').remove();
     document.getElementById("pagination-controls").style.display = "block";
@@ -321,14 +324,24 @@ fetch("assets/cars/cars.json")
       }
       else{
         let carId = document.querySelector('.car-id').querySelector('.item-att-val').textContent;        
+        let carImage = document.querySelector('.car-image-inner');
+        const canvas = document.createElement('canvas');
+        const style = getComputedStyle(carImage);
+        const width = parseInt(style.width, 10);
+        const height = parseInt(style.height, 10);    
+        canvas.width = width;
+        canvas.height = height;
+        const ctx = canvas.getContext('2d');
+        ctx.drawImage(carImage, 0, 0, width, height);
+        const dataURL = canvas.toDataURL();
+        localStorage.setItem("chosenCarImage", dataURL);
         let orderConfigData = JSON.parse(localStorage.getItem('orderConfigData'));        
         let chosenCar = orderConfigData.find((car) => car.id === carId);        
-        localStorage.setItem('orderedCar', chosenCar);            
+        localStorage.setItem('orderedCar', JSON.stringify(chosenCar));
+        localStorage.removeItem('orderConfigData');            
         window.location.href = 'order-confirmation.html';   
       }
-    
-     
-  
+ 
   });
 
 // adding event listener to search form
