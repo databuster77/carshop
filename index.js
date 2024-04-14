@@ -436,6 +436,14 @@ const carList = document.getElementById("car-list");
 searchInput.addEventListener("input", function () {
   const searchText = searchInput.value.toLowerCase();
   const cars = carList.querySelectorAll("li");
+  
+  let carsNum = [...cars].filter((car)=>{
+    const brand = car
+        .querySelector(".brand .item-att-val")
+        .textContent.toLowerCase();
+      return brand.includes(searchText);
+    }).length
+
   cars.forEach((car) => {
     const brand = car
       .querySelector(".brand .item-att-val")
@@ -446,4 +454,46 @@ searchInput.addEventListener("input", function () {
       car.style.display = "none";
     }
   });
+
+  const pageCount = 4;
+  let currentPage = 1;
+
+  const updateList = () => {
+    const totalPage = Math.ceil(carsNum / pageCount);
+    document.getElementById(
+      "page-info"
+    ).textContent = `Strona ${currentPage} z ${totalPage}`;
+    // const start = (currentPage - 1) * pageCount;
+    // const end = start + pageCount;
+    // cars.forEach((item, index) => {
+    //   if (index >= start && index < end) {
+    //     item.style.display = "flex";
+    //   } else {
+    //     item.style.display = "none";
+    //   }
+    // });
+  };
+
+  const nextPage = () => {
+    const totalPage = Math.ceil(carsNum / pageCount);
+    if (currentPage < totalPage) {
+      currentPage++;
+      updateList();
+    }
+  };
+
+  const prevPage = () => {
+    if (currentPage > 1) {
+      currentPage--;
+      updateList();
+    }
+  };
+
+  document.getElementById("next-btn").addEventListener("click", nextPage);
+  document.getElementById("prev-btn").addEventListener("click", prevPage);
+
+  updateList();
+
 });
+
+
