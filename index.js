@@ -357,7 +357,7 @@ returnButton.addEventListener("click", (e) => {
   document.getElementById("car-list").style.display = "flex";
   document.getElementsByClassName("buy-form")[0].style.display = "none";
   document.getElementById("search-form").style.display = "flex";
-  document.querySelector("main").style.width = "950px";
+  document.querySelector("main").style.width = "1000px";
   document.querySelector("main").style.justifyContent = "space-evenly";
   document
     .querySelector(".buy-form")
