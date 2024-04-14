@@ -92,7 +92,7 @@ main {
   margin: 30px auto;
   display: flex;
   flex-direction: column;
-  width: 950px;
+  width: 1000px;
   justify-content: center;
   /* background-color: rgb(242, 243, 245);   */
   
@@ -147,10 +147,9 @@ ul#car-list {
   display: flex;
   list-style-type: none;
   justify-content: center;
-  margin-right: 40px;
-  /* background-color: red; */
-  max-height: 1100px; /* Adjust based on your needs */  
-  /* overflow-y: auto; */
+  margin-right: 40px;  
+  max-height: 1100px;
+  
 
 }
 
