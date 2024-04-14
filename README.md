@@ -1,3 +1,5 @@
+<img src="./assets/logo.webp" alt="CarShop Logo" title="CarShop Logo" width="300">
+
 # CarShop Application
 ---
 ## Description
