@@ -66,6 +66,8 @@ export const addSelectionToBasket = async (e, carId) => {
                           <button class="accesory-delete">Usuń</button>
                           <span class="accesory-total-price">Cena łącznie: <span class="accesory-total-price-amount"></span> PLN</span>`;
                           li.querySelector('.accesory-id').style.display="none";
+                          li.querySelector('.accesory-price').style.display = "none";                              
+
                           ul.appendChild(li);
       let lastAddedLi = ul.lastElementChild;
       let buttonMore = lastAddedLi.querySelector(".accesory-more");
