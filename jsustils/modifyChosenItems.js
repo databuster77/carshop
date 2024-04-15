@@ -9,12 +9,10 @@ export const changeItemQuantity = (ops, button, accesoryPrice, carId) => {
         ".accesory-total-price-amount"
       );
       let totalAccesoryQuantityRecalculated;
-      if (ops === "add") {
-        console.log("clicked MORE");
+      if (ops === "add") {        
         totalAccesoryQuantityRecalculated =
           parseInt(quantityInput.textContent) + 1;
-      } else if (ops === "subtract") {
-        console.log("clicked LESS");
+      } else if (ops === "subtract") {        
         if (parseInt(quantityInput.textContent)>1){
           totalAccesoryQuantityRecalculated =
           parseInt(quantityInput.textContent) - 1;
@@ -32,8 +30,7 @@ export const changeItemQuantity = (ops, button, accesoryPrice, carId) => {
   
   export const deletItem = (button, carId) => {
     button.addEventListener("click", (e) => {
-      e.preventDefault();
-      console.log("clicked DELETE");
+      e.preventDefault();      
       const li = e.target.closest("li").remove();
       recalculateOrderPrice(carId);
     });

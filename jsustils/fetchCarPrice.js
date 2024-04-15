@@ -9,7 +9,7 @@ export const fetchCarPrice = (carId) => {
       .then((data) => {
         let foundCar = data.filter((item) => item.id === carId)[0];
         if (foundCar) {
-          console.log("foundCarPrice", foundCar.price);
+          // console.log("foundCarPrice", foundCar.price);
           return foundCar.price;
         }
         throw new Error("Accessory not found");

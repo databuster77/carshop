@@ -1,6 +1,5 @@
 const carImage = localStorage.getItem("chosenCarImage");
-if (carImage) {
-        console.log('dafadsf')
+if (carImage) {        
         const imgElement = document.createElement("img");
         imgElement.src = carImage;        
         imgElement.style.objectFit = "cover";
@@ -38,8 +37,7 @@ if (orderData.chosen_accesories) {
 
 const returnButton = document.getElementsByClassName(`return-list`)[0];
   returnButton.addEventListener("click", (e) => {
-    e.preventDefault();
-    console.log("clicked RETURN");
+    e.preventDefault();    
     const ul = document.getElementById("chosen-accesories");
     while (ul.firstChild) {
       ul.removeChild(ul.firstChild);

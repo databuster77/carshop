@@ -14,13 +14,13 @@ export const recalculateOrderPrice = async (carId) => {
     // totalOrderPriceRecalculated = parseInt(totalOrderPrice.textContent) + accesoriesTotalPrice;
     let totalOrderPriceRecalculated = carPrice + accesoriesTotalPrice;
     totalOrderPrice.textContent = totalOrderPriceRecalculated;
-    console.log("Recalculated Price", totalOrderPriceRecalculated);
+    // console.log("Recalculated Price", totalOrderPriceRecalculated);
     let orderConfigData = JSON.parse(localStorage.getItem("orderConfigData"));
     if (orderConfigData) {
       let chosenCar = orderConfigData.find((car) => car.id === carId);
       if (chosenCar) {
         let accesoriesData = [...ul.children].map((li) => {
-          console.log("li", li);
+          // console.log("li", li);
           let accesoryId = li.querySelector(".accesory-id").textContent;
           let accesoryType = li.querySelector(".accesory-type").textContent;
           let assesoryName = li.querySelector(".assesory-name").textContent;
@@ -37,12 +37,10 @@ export const recalculateOrderPrice = async (carId) => {
           };
           return accesoryData;
         });
-  
-        console.log("accesoriesData", accesoriesData);
+          
         chosenCar["chosen_accesories"] = accesoriesData;
         chosenCar["total_price"] = totalOrderPriceRecalculated;
-        localStorage.setItem("orderConfigData", JSON.stringify(orderConfigData));
-        console.log("added items to localStorage");
+        localStorage.setItem("orderConfigData", JSON.stringify(orderConfigData));  
       }
     }
   };

@@ -20,10 +20,10 @@ export const saveData = (e, carId) => {
           valuesChanged = {[changedField]:newFieldValue, "cash": false};        
         }
         updatedOrderDetails = {...chosenCar.order_details, ...valuesChanged };
-        console.log("updatedOrderDetails for chosen car", updatedOrderDetails);
+        // console.log("updatedOrderDetails for chosen car", updatedOrderDetails);
         chosenCar["order_details"] = updatedOrderDetails;      
         localStorage.setItem("orderConfigData", JSON.stringify(orderConfigData));
-        console.log("added order details to localStorage");
+        // console.log("added order details to localStorage", orderConfigData);
       }
     }
   };

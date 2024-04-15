@@ -5,9 +5,7 @@ import { recalculateOrderPrice } from "./recalculatePrice.js";
 
 export const addSelectionToBasket = async (e, carId) => {
     e.preventDefault();    
-    const ul = document.getElementById("chosen-accesories");
-    console.log("CLICKED BUTTON DODAJ");
-    console.log("chosen accessories before adding", ul);
+    const ul = document.getElementById("chosen-accesories");        
     const parentEl = document.getElementById(e.target.id).parentElement;
     const selectElement = parentEl.querySelector("select");
     const selectedOption = selectElement.options[selectElement.selectedIndex];
@@ -24,35 +22,23 @@ export const addSelectionToBasket = async (e, carId) => {
       apiUrl = "assets/parts/oils.json";
     }
   
-    let {accesoryPrice, accesoryType} = await fetchAccesoryPrice(apiUrl, selectedItemValue);
-    console.log('accesoryPrice, accesoryType for adding to basket', accesoryPrice, accesoryType);
+    let {accesoryPrice, accesoryType} = await fetchAccesoryPrice(apiUrl, selectedItemValue);    
     const existingLi = [...ul.children].find(
       (li) => li.querySelector(".accesory-id").textContent === selectedItemValue
     );
   
-    if (existingLi) {
-      console.log("Old Li updated");
-      console.log("accesoryPrice", accesoryPrice);
-      const quantityInput = existingLi.querySelector("#accesory-quantity");
-      console.log("quantityInput bef upd", quantityInput.textContent);
+    if (existingLi) {      
+      const quantityInput = existingLi.querySelector("#accesory-quantity");      
       let totalAccesoryQuantityRecalculated =
-        parseInt(quantityInput.textContent) + 1;
-      console.log(
-        "totalAccesoryQuantityRecalculated",
-        totalAccesoryQuantityRecalculated
-      );
-      quantityInput.textContent = totalAccesoryQuantityRecalculated;
-      console.log("quantityInput aft upd", quantityInput.textContent);
+        parseInt(quantityInput.textContent) + 1;      
+      quantityInput.textContent = totalAccesoryQuantityRecalculated;      
       const accesoryTotalPrice = existingLi.querySelector(
         ".accesory-total-price-amount"
       );
       accesoryTotalPrice.textContent =
         accesoryPrice * totalAccesoryQuantityRecalculated;
       recalculateOrderPrice(carId);
-    } else {
-      console.log("New Li added");
-      console.log("accesoryPrice", accesoryPrice);
-      console.log("existingLi", existingLi);
+    } else {      
       let totalAccesoryQuantityRecalculated = 0;
       const li = document.createElement("li");
       li.className = "chosen-accesory";
@@ -75,21 +61,10 @@ export const addSelectionToBasket = async (e, carId) => {
       let buttonDelete = lastAddedLi.querySelector(".accesory-delete");
       changeItemQuantity("add", buttonMore, accesoryPrice, carId);
       changeItemQuantity("subtract", buttonLess, accesoryPrice, carId);
-      deletItem(buttonDelete, carId);
-      console.log("lastAddedLi", lastAddedLi);
-      const quantityInput = lastAddedLi.querySelector("#accesory-quantity");
-      console.log(
-        "quantityInput bef upd",
-        quantityInput.textContent,
-        parseInt(quantityInput.textContent)
-      );
-      totalAccesoryQuantityRecalculated = 1;
-      console.log(
-        "totalAccesoryQuantityRecalculated",
-        totalAccesoryQuantityRecalculated
-      );
-      quantityInput.textContent = totalAccesoryQuantityRecalculated;
-      console.log("quantityInput aft upd", quantityInput.textContent);
+      deletItem(buttonDelete, carId);      
+      const quantityInput = lastAddedLi.querySelector("#accesory-quantity");      
+      totalAccesoryQuantityRecalculated = 1;      
+      quantityInput.textContent = totalAccesoryQuantityRecalculated;      
       const accesoryTotalPrice = lastAddedLi.querySelector(
         ".accesory-total-price-amount"
       );

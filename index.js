@@ -195,13 +195,8 @@ document.getElementById("car-list").addEventListener("click", (e) => {
     if (orderConfigData) {
       let chosenCar = orderConfigData.find((car) => car.id === carId);
       if (chosenCar) {
-        const ul = document.getElementById("chosen-accesories");
-        console.log("chosen-accesories before update from localStorage", ul);
-        if (chosenCar.chosen_accesories) {
-          console.log(
-            "chosen_accesories in localStorage",
-            chosenCar.chosen_accesories
-          );
+        const ul = document.getElementById("chosen-accesories");        
+        if (chosenCar.chosen_accesories) {          
           chosenCar.chosen_accesories.forEach((accesory) => {
             let li = document.createElement("li");
             li.className = "chosen-accesory";
@@ -260,13 +255,9 @@ document.getElementById("car-list").addEventListener("click", (e) => {
           }
         }
 
-        const orderDetails = document.getElementById("order-details");
-        console.log(
-          "orderDetails before update from localStorage",
-          orderDetails
-        );
+        const orderDetails = document.getElementById("order-details");        
         if (chosenCar.order_details) {
-          console.log("chosenCar.order_details", chosenCar.order_details);
+          // console.log("chosenCar.order_details", chosenCar.order_details);
           const radioCash = orderDetails.querySelector("#cash");
           const radioLeasing = orderDetails.querySelector("#leasing");
           const inputFirstName = orderDetails.querySelector("#first-name");
@@ -326,34 +317,29 @@ document.body.addEventListener("click", (e) => {
 });
 
 // adding listener to keep changed order details in localStorage
-document.body.addEventListener("change", (e) => {
-  if (
-    e.target &&
-    ["cash", "leasing", "first-name", "last-name", "delivery"].includes(
-      e.target.id
-    )
-  ) {
-    console.log("new changed e value", e.target.value);
-    const carId = e.target.closest(".buy-form").dataset.carId;
-    saveData(e, carId);
-  }
-});
+// document.body.addEventListener("change", (e) => {
+//   if (
+//     e.target &&
+//     ["cash", "leasing", "first-name", "last-name", "delivery"].includes(
+//       e.target.id
+//     )
+//   ) {
+//     console.log("new changed e value", e.target.value);
+//     const carId = e.target.closest(".buy-form").dataset.carId;
+//     saveData(e, carId);
+//   }
+// });
 
 // adding event listeners for button return-list
 const returnButton = document.getElementsByClassName(`return-list`)[0];
 returnButton.addEventListener("click", (e) => {
-  e.preventDefault();
-  console.log("clicked RETURN");
+  e.preventDefault();  
   const ul = document.getElementById("chosen-accesories");
   while (ul.firstChild) {
     ul.removeChild(ul.firstChild);
   }
   const totalOrderPrice = document.getElementById("total-price");
-  totalOrderPrice.textContent = 0;
-  console.log(
-    "chosen accessories before adding",
-    document.getElementById("chosen-accesories")
-  );
+  totalOrderPrice.textContent = 0;  
   document.getElementById("car-list").style.display = "flex";
   document.getElementsByClassName("buy-form")[0].style.display = "none";
   document.getElementById("search-form").style.display = "flex";
@@ -424,6 +410,18 @@ placeOrderButton.addEventListener("click", (e) => {
     localStorage.setItem("chosenCarImage", dataURL);
     let orderConfigData = JSON.parse(localStorage.getItem("orderConfigData"));
     let chosenCar = orderConfigData.find((car) => car.id === carId);
+    const radioCash = document.getElementById('cash');
+    const radioLeasing = document.getElementById('leasing');
+    const inputDelivery = document.getElementById('delivery');
+    const inputFirstName = document.getElementById('first-name');
+    const inputLastName = document.getElementById('last-name');
+    let updatedOrderDetails = {[radioCash.id]:radioCash.checked,
+                              [radioLeasing.id]:radioLeasing.checked,
+                              [inputDelivery.id]:inputDelivery.value,
+                              [inputFirstName.id]:inputFirstName.value,
+                              [inputLastName.id]:inputLastName.value,};
+    chosenCar["order_details"] = {...chosenCar.order_details, ...updatedOrderDetails };      
+    localStorage.setItem("orderConfigData", JSON.stringify(orderConfigData));
     localStorage.setItem("orderedCar", JSON.stringify(chosenCar));
     localStorage.removeItem("orderConfigData");
     window.location.href = "order-confirmation.html";
@@ -462,16 +460,7 @@ searchInput.addEventListener("input", function () {
     const totalPage = Math.ceil(carsNum / pageCount);
     document.getElementById(
       "page-info"
-    ).textContent = `Strona ${currentPage} z ${totalPage}`;
-    // const start = (currentPage - 1) * pageCount;
-    // const end = start + pageCount;
-    // cars.forEach((item, index) => {
-    //   if (index >= start && index < end) {
-    //     item.style.display = "flex";
-    //   } else {
-    //     item.style.display = "none";
-    //   }
-    // });
+    ).textContent = `Strona ${currentPage} z ${totalPage}`;  
   };
 
   const nextPage = () => {

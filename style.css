@@ -1,18 +1,14 @@
-@import url('https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Black+Ops+One&family=Bungee&family=Indie+Flower&family=Jersey+15&family=Jersey+25&family=Pixelify+Sans:wght@400..700&family=Rubik+Mono+One&family=Russo+One&family=Seymour+One&family=Tac+One&family=Titan+One&display=swap');
-
+@import url("https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Black+Ops+One&family=Bungee&family=Indie+Flower&family=Jersey+15&family=Jersey+25&family=Pixelify+Sans:wght@400..700&family=Rubik+Mono+One&family=Russo+One&family=Seymour+One&family=Tac+One&family=Titan+One&display=swap");
 
 * {
   box-sizing: border-box;
   margin: 0;
-  background-color: rgb(229, 232, 238);  
+  background-color: rgb(229, 232, 238);
 }
 
-
-
 header {
-  display:flex;
+  display: flex;
   flex-direction: column;
-
 }
 
 #head-car {
@@ -22,20 +18,13 @@ header {
 
 div#intro {
   display: flex;  
-  /* justify-content: center;   */
-  /* width: 1000px;   */
-  /* align-items:center; */
-  margin: 20px auto;
-  /* position: relative; */
+  margin: 20px auto;  
 }
-.car-wheel{
+.car-wheel {
   width: 120px;
-  height: 120px;
-  /* position: absolute; */
-  animation: spin 2s linear infinite;
-  /* animation: spin 2s linear infinite, moveHorizontally 4s linear infinite; */
-  margin: 20px;
-  /* z-index: 1; */
+  height: 120px; 
+  animation: spin 2s linear infinite; 
+  margin: 20px;  
 }
 
 @keyframes spin {
@@ -47,110 +36,90 @@ div#intro {
   }
 }
 
-@keyframes moveHorizontally {
-  from {
-    left: 0;
-  }
-  to {
-    left: 100%;
-  }
+.intro-wrapper {
+  display: flex;
+  flex-direction: column;
+  width: 700px;
 }
 
-.intro-wrapper{display: flex;
-flex-direction: column;
-width: 700px;
-
-/* z-index: 2; */
-}
-
-div#intro span {  
-  font-size: 30px;  
-  color: rgb(0, 84, 206);
-  /* font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif; */
-  /* font-family: "Jersey 25", sans-serif;   */
-  /* font-family: "Russo One", sans-serif; */
-  /* font-family: "Black Ops One", system-ui; */
-  /* font-family: "Bungee", sans-serif; */
-  font-family: "Pixelify Sans", sans-serif;
-  /* font-family: "Rubik Mono One", monospace; */
+div#intro span {
+  font-size: 30px;
+  color: rgb(0, 84, 206);  
+  font-family: "Pixelify Sans", sans-serif;  
   font-weight: bold;
-  padding: 5px;  
+  padding: 5px;
 }
 
-#motto2{text-align: center;}
-#motto3{text-align: end;}
+#motto2 {
+  text-align: center;
+}
+#motto3 {
+  text-align: end;
+}
 
-.car-side{
+.car-side {
   max-width: 15vw;
   object-fit: cover;
 }
-.main-wrapper{
+.main-wrapper {
   display: flex;
-  }
+}
 
 main {
   margin: 30px auto;
   display: flex;
   flex-direction: column;
-  width: 1000px;
+  min-width: 1000px;
   justify-content: center;
-  /* background-color: rgb(242, 243, 245);   */
-  
-  
 }
 
-.car-list-wrapper{
-  border-radius: 15px;
-  /* background-color: black; */
+.car-list-wrapper {
+  border-radius: 15px;  
   box-shadow: 5px 5px 24px 0px rgba(66, 68, 90, 1);
 }
 
 .search {
-  display: flex;
-  /* flex-basis: 200px; */  
-  /* flex-grow: 50%; */
+  display: flex;  
 }
-#search-form {    
+
+#search-form {
   margin: 20px auto;
   padding: 20px;
   display: flex;
-  flex-direction: column;  
+  flex-direction: column;
   justify-content: center;
   border: 2px solid black;
   border-radius: 5px;
   box-shadow: 5px 5px 24px 0px rgba(66, 68, 90, 1);
-  flex-grow: 0.1;  
+  flex-grow: 0.1;
 }
 
-#search-form label{
+#search-form label {
   background-color: rgb(0, 84, 206);
   color: whitesmoke;
   text-transform: uppercase;
   text-align: center;
   font-family: "Jersey 25", sans-serif;
-  font-size: 20px;
+  font-size: 25px;
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
 }
 
-#search-form input{  
+#search-form input {
   font-family: "Jersey 25", sans-serif;
   color: black;
-  font-size: 20px;
+  font-size: 25px;
   border-bottom-left-radius: 5px;
   border-bottom-right-radius: 5px;
 }
 
-ul#car-list {
-  /* width: 1100px; */
+ul#car-list {  
   flex-wrap: wrap;
   display: flex;
   list-style-type: none;
   justify-content: center;
-  margin-right: 40px;  
+  margin-right: 40px;
   max-height: 1100px;
-  
-
 }
 
 ul#car-list > li {
@@ -161,59 +130,50 @@ ul#car-list > li {
   padding: 20px;
   border: 2px solid black;
   border-radius: 15px;
-  background-color: ghostwhite;
-  /* box-shadow: 5px 5px 24px 0px rgba(66, 68, 90, 1); */
+  background-color: ghostwhite;  
 }
 
-ul#car-list > li:hover{box-shadow: 5px 5px 24px 0px rgba(66, 68, 90, 1);
+ul#car-list > li:hover {
+  box-shadow: 5px 5px 24px 0px rgba(66, 68, 90, 1);
 }
 
 .car-main-picture {
   height: 200px;
   width: 250px;
   object-fit: cover;  
-  /* width: 350px; */
   border-bottom-left-radius: 15px;
   border-bottom-right-radius: 15px;
   margin: 0 auto;
   margin-bottom: 15px;
-
 }
 
 .description {
   display: flex;
   width: 20vw;
-  flex-direction: column;    
-  
+  flex-direction: column;
 }
 
-.item-att{
-  color:rgb(0, 84, 206); 
+.item-att {
+  color: rgb(0, 84, 206);
   border-radius: 5px;
   padding: 5px;
   display: inline-block;
   width: 140px;
-  margin-right: 25px;  
-  font-family: "Russo One", sans-serif;
-  /* font-family: "Black Ops One", system-ui; */
-  /* font-family: "Bungee", sans-serif;   */
-  /* font-family: "Rubik Mono One", monospace; */
+  margin-right: 25px;
+  font-family: "Russo One", sans-serif;  
   text-transform: uppercase;
-  font-size: 13px; 
+  font-size: 13px;
 }
 
-.item-att-val{
-  color:rgb(0, 84, 206);   
-  padding: 5px;      
-  font-family: "Russo One", sans-serif;
-  /* font-family: "Black Ops One", system-ui; */
-  /* font-family: "Bungee", sans-serif;   */
-  /* font-family: "Rubik Mono One", monospace; */
+.item-att-val {
+  color: rgb(0, 84, 206);
+  padding: 5px;
+  font-family: "Russo One", sans-serif;  
   text-transform: uppercase;
-  font-size: 13px; 
+  font-size: 13px;
 }
 
-#car-list .car-name .item-att-val{
+#car-list .car-name .item-att-val {
   display: flex;
   justify-content: center;
   background-color: rgb(0, 84, 206);
@@ -221,31 +181,31 @@ ul#car-list > li:hover{box-shadow: 5px 5px 24px 0px rgba(66, 68, 90, 1);
   border-top-right-radius: 15px;
   font-size: 30px;
   color: ghostwhite;
-  text-transform:uppercase;
-  font-family: "Jersey 25", sans-serif;  
+  text-transform: uppercase;
+  font-family: "Jersey 25", sans-serif;
 }
-.price .item-att-val{
-  border-radius: 15px;  
+.price .item-att-val {
+  border-radius: 15px;
   border: 2px solid black;
   background-color: whitesmoke;
-
 }
-.order-config{
-  margin: 10px 0;  
+.order-config {
+  margin: 10px 0;
   background-color: rgb(0, 84, 206);
   border-radius: 10px;
   padding: 10px;
   color: white;
   text-transform: uppercase;
   font-family: "Jersey 25", sans-serif;
-  font-size: 25px;  
+  font-size: 25px;
 }
 
-.order-config:hover{box-shadow: 5px 5px 24px 0px rgba(66, 68, 90, 1);
+.order-config:hover {
+  box-shadow: 5px 5px 24px 0px rgba(66, 68, 90, 1);
   cursor: pointer;
 }
 #pagination-controls {
-    text-align: center;
+  text-align: center;
   margin: 20px;
 }
 
@@ -259,18 +219,17 @@ ul#car-list > li:hover{box-shadow: 5px 5px 24px 0px rgba(66, 68, 90, 1);
   color: white;
   text-transform: uppercase;
   font-family: "Jersey 25", sans-serif;
-  font-size: 25px;  
+  font-size: 25px;
   box-shadow: 5px 5px 24px 0px rgba(66, 68, 90, 1);
 }
 
 #page-info {
   font-weight: bold;
   text-transform: uppercase;
-  color:  rgb(0, 84, 206);  
+  color: rgb(0, 84, 206);
   font-family: "Jersey 25", sans-serif;
-  font-size: 25px;  
+  font-size: 25px;
 }
-
 
 .buy-form {
   margin: 20px auto;
@@ -278,151 +237,144 @@ ul#car-list > li:hover{box-shadow: 5px 5px 24px 0px rgba(66, 68, 90, 1);
   flex-direction: column;
   justify-content: center;
   width: 750px;
-  font-family: "Jersey 25", sans-serif;  
+  font-family: "Jersey 25", sans-serif;
   font-size: 20px;
-  font-weight: bold;        
+  font-weight: bold;
 }
 
-#order-car-details{
+#order-car-details {
   display: flex;
   justify-content: space-evenly;
-  border: none;  
+  border: none;
   box-shadow: 5px 5px 24px 0px rgba(66, 68, 90, 1);
   background-color: whitesmoke;
   margin: 5px 0 30px 0;
-  
 }
 
-.car-image-inner{
+.car-image-inner {
   height: 250px;
   width: 350px;
 }
-.car-details{
+.car-details {
   display: flex;
   flex-direction: column;
-  
 }
-.car-detail{
+.car-detail {
   margin: 5px 0;
 }
 
-/* .car-detail span{
-  font-size: 10px;  
-} */
-
-#order-details{
+#order-details {
   display: flex;
-  flex-direction: column;
-  /* flex-wrap: wrap; */
-  border: none;
-  /* justify-content: left;   */
-
+  flex-direction: column;  
+  border: none;  
 }
 
-.order-details-inner{
+.order-details-inner {
   margin: 10px 0;
   display: flex;
   justify-content: center;
 }
 
-.order-details-inner-2{margin: 0 15px;}
+.order-details-inner-2 {
+  margin: 0 15px;
+}
 
-.order-details-inner-2 input{
+.order-details-inner-2 input {
   border: 2px solid #ccc;
   border-radius: 5px;
   background-color: white;
-  cursor: pointer;  
+  cursor: pointer;
   padding: 2px;
-  color: rgb(0, 84, 206);;
+  color: rgb(0, 84, 206);
 }
 
-
-
-.parts{display: flex;
+.parts {
+  display: flex;
   flex-direction: column;
   justify-content: space-evenly;
-  
 }
 
-.parts-inner{
+.parts-inner {
   border: none;
 }
 
-
-#accesories{
+#accesories {
   border: none;
   margin: 10px 0;
   display: none;
 }
-#chosen-accesories{list-style-type: none;
+#chosen-accesories {
+  list-style-type: none;
   display: flex;
-  flex-direction: column;  
+  flex-direction: column;
 }
 
-#chosen-accesories li{margin: 5px 0;}
+#chosen-accesories li {
+  margin: 5px 0;
+}
 
-.accesory-delete, .accesory-more, .accesory-less{
-  border: none;    
-  padding: 3px 10px;  
+.accesory-delete,
+.accesory-more,
+.accesory-less {
+  border: none;
+  padding: 3px 10px;
   border-radius: 15px;
   box-shadow: 2px 2px 5px 0px rgb(105, 132, 173);
   background-color: rgb(0, 84, 206);
-  border-radius: 5px;  
+  border-radius: 5px;
   color: white;
   text-transform: uppercase;
   font-family: "Jersey 25", sans-serif;
-  font-size: 18px;  
+  font-size: 18px;
 }
 
-.add-order-btn{
-  border: none;    
-  padding: 3px 10px;  
+.add-order-btn {
+  border: none;
+  padding: 3px 10px;
   border-radius: 15px;
   box-shadow: 2px 2px 5px 0px rgb(105, 132, 173);
   background-color: rgb(0, 84, 206);
-  border-radius: 5px;  
+  border-radius: 5px;
   color: white;
   text-transform: uppercase;
   font-family: "Jersey 25", sans-serif;
-  font-size: 25px;  
+  font-size: 25px;
 }
 
-select{  
+select {
   border: 2px solid #ccc;
   border-radius: 5px;
   background-color: white;
-  cursor: pointer;  
+  cursor: pointer;
   padding: 2px;
-  color: rgb(0, 84, 206);;
+  color: rgb(0, 84, 206);
   text-transform: uppercase;
   font-family: "Jersey 25", sans-serif;
-  font-size: 25px;  
+  font-size: 25px;
 }
 
-
-.total-price{
+.total-price {
   display: flex;
   justify-content: center;
-  
 }
 
-.total-price p{
-  color:  rgb(0, 84, 206);  
+.total-price p {
+  color: rgb(0, 84, 206);
   font-family: "Jersey 25", sans-serif;
-  font-size: 25px;    
+  font-size: 25px;
   padding: 10px;
   border-radius: 5px;
-  margin: 5px ;
+  margin: 5px;
 }
 
-.order-buttons{
+.order-buttons {
   display: flex;
   justify-content: space-around;
-  margin: 10px;  
+  margin: 10px;
 }
 
-.order-buttons-btn{
-  border: none;    
+.order-buttons-btn {
+  border: none;
   padding: 15px;
   border-radius: 15px;
   box-shadow: 3px 3px 24px 0px rgb(105, 132, 173);
@@ -432,35 +384,30 @@ select{
   color: white;
   text-transform: uppercase;
   font-family: "Jersey 25", sans-serif;
-  font-size: 25px;  
+  font-size: 25px;
 }
 
-.validation-errors{
+.validation-errors {
   display: flex;
   flex-direction: column;
 }
 
 footer {
-  margin: 20px 0;
-  display: flex;
-  justify-content: center;
+  margin: 40px auto;
+  text-align: center;
   color: black;
 }
 
 #logo {
   width: 200px;
   height: auto;
+  display: block;
+  margin: 20px auto;
 }
 
 #visit-card {
   display: flex;
   flex-direction: column;
   color: rgb(0, 84, 206);
-  margin-left: 30px;  
   font-family: "Russo One", sans-serif;
-  /* font-family: "Black Ops One", system-ui; */
-  /* font-family: "Bungee", sans-serif; */
-  /* font-family: "Pixelify Sans", sans-serif; */
-  /* font-family: "Rubik Mono One", monospace; */
 }
-
