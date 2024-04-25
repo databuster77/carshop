@@ -32,10 +32,10 @@ export const fetchAccesories = (apiUrl, selectElement) => {
         return response.json();
       })
       .then((data) => {
-        let foundAccesory = data.filter((item) => item.id === accesoryId)[0];
+        const foundAccesory = data.filter((item) => item.id === accesoryId)[0];
         if (foundAccesory) {
           // console.log("foundAccesory", foundAccesory);
-          let returnedAccessoryData = {"accesoryPrice": foundAccesory.price,
+          const returnedAccessoryData = {"accesoryPrice": foundAccesory.price,
                                       "accesoryType": foundAccesory.type};
           // console.log("returnedAccessoryData", returnedAccessoryData);                                      
           return (returnedAccessoryData);

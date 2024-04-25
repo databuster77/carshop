@@ -6,7 +6,15 @@ import {
   fetchAccesoryPrice,
 } from "./jsustils/fetchAccessories.js";
 
-document.getElementsByClassName("buy-form")[0].style.display = "none";
+// document.getElementsByClassName("buy-form")[0].style.display = "none";
+document.getElementsByClassName("buy-form")[0].classList.add('el-unvisible');
+document.getElementsByClassName("buy-form")[0].classList.remove('el-flex');
+document.getElementById("car-list").classList.remove('el-unvisible');
+document.getElementById("search-form").classList.remove('el-unvisible');
+document.getElementById("pagination-controls").classList.remove('el-unvisible');    
+document.getElementById("car-list").classList.add('el-flex');
+document.getElementById("search-form").classList.add('el-flex');
+document.getElementById("pagination-controls").classList.add('el-block');    
 let today = new Date();
 let futureDate = new Date(today.setDate(today.getDate() + 14));
 function formatDate(date) {
@@ -93,11 +101,20 @@ fetch("assets/cars/cars.json")
       const end = start + pageCount;
       items.forEach((item, index) => {
         if (index >= start && index < end) {
-          item.style.display = "flex";
+          // item.style.display = "flex";
+          item.classList.add('el-flex');
+          item.classList.remove('el-unvisible');
         } else {
-          item.style.display = "none";
+          // item.style.display = "none";
+          item.classList.add('el-unvisible');
+          item.classList.remove('el-flex');
         }
       });
+      if(currentPage===totalPage){         
+        document.getElementById("next-btn").disabled = true;          
+      }
+      else {document.getElementById("next-btn").disabled = false;
+      }
     };
 
     const nextPage = () => {
@@ -133,27 +150,27 @@ document.getElementById("car-list").addEventListener("click", (e) => {
     const index = e.target.getAttribute("data-index");
     const description = document.getElementById(`ca_${index}`);
 
-    let carId = `ca_${index}`;
-    let brand = description
+    const carId = `ca_${index}`;
+    const brand = description
       .querySelector(".brand")
       .querySelector(".item-att-val").textContent;
-    let carImage = description
+    const carImage = description
       .querySelector(".car-main-picture")
       .cloneNode(true);
     carImage.className = "car-image-inner";
-    let carName = description
+    const carName = description
       .querySelector(".car-name")
       .querySelector(".item-att-val").textContent;
-    let year = description
+    const year = description
       .querySelector(".year")
       .querySelector(".item-att-val").textContent;
-    let power = description
+    const power = description
       .querySelector(".power")
       .querySelector(".item-att-val").textContent;
-    let milage = description
+    const milage = description
       .querySelector(".milage")
       .querySelector(".item-att-val").textContent;
-    let price = description
+    const price = description
       .querySelector(".price")
       .querySelector(".item-att-val").textContent;
 
@@ -180,7 +197,7 @@ document.getElementById("car-list").addEventListener("click", (e) => {
     buyForm.dataset.carId = carId;
     document.getElementById("total-price").textContent = price;
 
-    let formData = {
+    const formData = {
       id: carId,
       car_brand: brand,
       car_name: carName,
@@ -190,15 +207,15 @@ document.getElementById("car-list").addEventListener("click", (e) => {
       price: price,
       total_price: price,
     };
-    let orderConfigData = JSON.parse(localStorage.getItem("orderConfigData"));
+    const orderConfigData = JSON.parse(localStorage.getItem("orderConfigData"));
 
     if (orderConfigData) {
-      let chosenCar = orderConfigData.find((car) => car.id === carId);
+      const chosenCar = orderConfigData.find((car) => car.id === carId);
       if (chosenCar) {
         const ul = document.getElementById("chosen-accesories");        
         if (chosenCar.chosen_accesories) {          
           chosenCar.chosen_accesories.forEach((accesory) => {
-            let li = document.createElement("li");
+            const li = document.createElement("li");
             li.className = "chosen-accesory";
             li.innerHTML = `<span class="accesory-id">${accesory.accesoryId}</span>
                               <span class="accesory-type">${accesory.accesoryType}</span>
@@ -209,8 +226,10 @@ document.getElementById("car-list").addEventListener("click", (e) => {
                               <button class="accesory-less">-</button>
                               <button class="accesory-delete">Usuń</button>
                               <span class="accesory-total-price">Cena łącznie: <span class="accesory-total-price-amount"></span> PLN</span>`;
-            li.querySelector(".accesory-price").style.display = "none";
-            li.querySelector(".accesory-id").style.display = "none";
+            // li.querySelector(".accesory-price").style.display = "none";
+            // li.querySelector(".accesory-id").style.display = "none";
+            li.querySelector(".accesory-price").classList.add('el-unvisible');
+            li.querySelector(".accesory-id").classList.add('el-unvisible');
             ul.appendChild(li);
             const buttonMore = li.querySelector(".accesory-more");
             const buttonLess = li.querySelector(".accesory-less");
@@ -251,7 +270,9 @@ document.getElementById("car-list").addEventListener("click", (e) => {
             );
           });
           if (chosenCar.chosen_accesories.length > 0) {
-            document.getElementById("accesories").style.display = "block";
+            // document.getElementById("accesories").style.display = "block";
+            document.getElementById("accesories").classList.add('el-block');
+            document.getElementById("accesories").classList.remove('el-unvisible');
           }
         }
 
@@ -283,12 +304,22 @@ document.getElementById("car-list").addEventListener("click", (e) => {
       localStorage.setItem("orderConfigData", JSON.stringify(orderConfigData));
     }
 
-    document.getElementById("car-list").style.display = "none";
-    document.getElementById("search-form").style.display = "none";
-    buyForm.style.display = "flex";
-    document.querySelector("main").style.width = "800px";
-    document.querySelector("main").style.justifyContent = "center";
-    document.getElementById("pagination-controls").style.display = "none";
+    // document.getElementById("car-list").style.display = "none";    
+    // document.getElementById("search-form").style.display = "none";
+    // document.getElementById("pagination-controls").style.display = "none";
+    document.getElementById("car-list").classList.add('el-unvisible');
+    document.getElementById("search-form").classList.add('el-unvisible');
+    document.getElementById("pagination-controls").classList.add('el-unvisible');    
+    document.getElementById("car-list").classList.remove('el-flex');
+    document.getElementById("search-form").classList.remove('el-flex');
+    document.getElementById("pagination-controls").classList.remove('el-block');    
+    // buyForm.style.display = "flex";
+    buyForm.classList.add('el-flex');    
+    buyForm.classList.remove('el-unvisible');
+    // document.querySelector("main").style.width = "800px";
+    // document.querySelector("main").style.justifyContent = "center";
+    document.querySelector("main").classList.add('main-after-config');
+    
 
     const batteriesSelect = document.getElementById("batteries");
     fetchAccesories("assets/parts/batteries.json", batteriesSelect);
@@ -304,15 +335,21 @@ document.body.addEventListener("click", (e) => {
   if (e.target && e.target.id === "add-batteries-btn") {
     const carId = e.target.closest(".buy-form").dataset.carId;
     addSelectionToBasket(e, carId);
-    document.getElementById("accesories").style.display = "block";
+    // document.getElementById("accesories").style.display = "block";
+    document.getElementById("accesories").classList.add('el-block');
+    document.getElementById("accesories").classList.remove('el-unvisible');    
   } else if (e.target && e.target.id === "add-oils-btn") {
     const carId = e.target.closest(".buy-form").dataset.carId;
     addSelectionToBasket(e, carId);
-    document.getElementById("accesories").style.display = "block";
+    // document.getElementById("accesories").style.display = "block";
+    document.getElementById("accesories").classList.add('el-block');
+    document.getElementById("accesories").classList.remove('el-unvisible');    
   } else if (e.target && e.target.id === "add-tires-btn") {
     const carId = e.target.closest(".buy-form").dataset.carId;
     addSelectionToBasket(e, carId);
-    document.getElementById("accesories").style.display = "block";
+    // document.getElementById("accesories").style.display = "block";
+    document.getElementById("accesories").classList.add('el-block');
+    document.getElementById("accesories").classList.remove('el-unvisible');    
   }
 });
 
@@ -340,17 +377,29 @@ returnButton.addEventListener("click", (e) => {
   }
   const totalOrderPrice = document.getElementById("total-price");
   totalOrderPrice.textContent = 0;  
-  document.getElementById("car-list").style.display = "flex";
-  document.getElementsByClassName("buy-form")[0].style.display = "none";
-  document.getElementById("search-form").style.display = "flex";
-  document.querySelector("main").style.width = "1000px";
-  document.querySelector("main").style.justifyContent = "space-evenly";
+  // document.getElementById("car-list").style.display = "flex";
+  // document.getElementById("search-form").style.display = "flex";
+  // document.getElementById("pagination-controls").style.display = "block";
+  document.getElementById("car-list").classList.add('el-flex');
+  document.getElementById("search-form").classList.add('el-flex');  
+  document.getElementById("pagination-controls").classList.add('el-block');
+  document.getElementById("car-list").classList.remove('el-unvisible');
+  document.getElementById("search-form").classList.remove('el-unvisible');
+  document.getElementById("pagination-controls").classList.remove('el-unvisible');    
+  // document.getElementById("accesories").style.display = "none";  
+  document.getElementById("accesories").classList.remove('el-block');
+  document.getElementById("accesories").classList.add('el-unvisible');    
+  // document.getElementsByClassName("buy-form")[0].style.display = "none";      
+  document.getElementsByClassName("buy-form")[0].classList.add('el-unvisible');
+  document.getElementsByClassName("buy-form")[0].classList.remove('el-flex');
+  // document.querySelector("main").style.width = "1000px";
+  // document.querySelector("main").style.justifyContent = "space-evenly";
+  document.querySelector("main").classList.replace('main-after-config','main-after-return');
   document
     .querySelector(".buy-form")
     .querySelector(".car-image-inner")
     .remove();
-  document.getElementById("pagination-controls").style.display = "block";
-  document.getElementById("accesories").style.display = "none";
+  
 });
 
 // adding event listeners for button place order
@@ -374,16 +423,16 @@ placeOrderButton.addEventListener("click", (e) => {
       validationErrors[input.id] = true;
     }
   });
-  let radioFieldsChecked = [...radioFields].map((input) => input.checked);
+  const radioFieldsChecked = [...radioFields].map((input) => input.checked);
 
   if (!radioFieldsChecked.some(Boolean)) {
     validationErrors["radio_buttons"] = true;
   }
   if (Object.keys(validationErrors).length > 0) {
-    let divErrors = document.createElement("div");
+    const divErrors = document.createElement("div");
     divErrors.className = "validation-errors";
     Object.entries(validationErrors).forEach(([key, value]) => {
-      let span = document.createElement("span");
+      const span = document.createElement("span");
       span.className = "error";
       if (key === "radio_buttons") {
         span.textContent = "Nie wybrano żadnej opcji finansowania";
@@ -394,10 +443,10 @@ placeOrderButton.addEventListener("click", (e) => {
     });
     buyForm.appendChild(divErrors);
   } else {
-    let carId = document
+    const carId = document
       .querySelector(".car-id")
       .querySelector(".item-att-val").textContent;
-    let carImage = document.querySelector(".car-image-inner");
+    const carImage = document.querySelector(".car-image-inner");
     const canvas = document.createElement("canvas");
     const style = getComputedStyle(carImage);
     const width = parseInt(style.width, 10);
@@ -408,14 +457,14 @@ placeOrderButton.addEventListener("click", (e) => {
     ctx.drawImage(carImage, 0, 0, width, height);
     const dataURL = canvas.toDataURL();
     localStorage.setItem("chosenCarImage", dataURL);
-    let orderConfigData = JSON.parse(localStorage.getItem("orderConfigData"));
-    let chosenCar = orderConfigData.find((car) => car.id === carId);
+    const orderConfigData = JSON.parse(localStorage.getItem("orderConfigData"));
+    const chosenCar = orderConfigData.find((car) => car.id === carId);
     const radioCash = document.getElementById('cash');
     const radioLeasing = document.getElementById('leasing');
     const inputDelivery = document.getElementById('delivery');
     const inputFirstName = document.getElementById('first-name');
     const inputLastName = document.getElementById('last-name');
-    let updatedOrderDetails = {[radioCash.id]:radioCash.checked,
+    const updatedOrderDetails = {[radioCash.id]:radioCash.checked,
                               [radioLeasing.id]:radioLeasing.checked,
                               [inputDelivery.id]:inputDelivery.value,
                               [inputFirstName.id]:inputFirstName.value,
@@ -430,45 +479,91 @@ placeOrderButton.addEventListener("click", (e) => {
 
 // adding event listener to search form
 const searchInput = document.getElementById("search");
-const carList = document.getElementById("car-list");
 searchInput.addEventListener("input", function () {
+  const ul = document.getElementById("car-list");
   const searchText = searchInput.value.toLowerCase();
-  const cars = carList.querySelectorAll("li");
-  
-  let carsNum = [...cars].filter((car)=>{
-    const brand = car
-        .querySelector(".brand .item-att-val")
-        .textContent.toLowerCase();
-      return brand.includes(searchText);
-    }).length
-
-  cars.forEach((car) => {
-    const brand = car
-      .querySelector(".brand .item-att-val")
-      .textContent.toLowerCase();
-    if (brand.includes(searchText)) {
-      car.style.display = "flex";
-    } else {
-      car.style.display = "none";
-    }
-  });
-
+  const items = ul.querySelectorAll("li");
   const pageCount = 4;
-  let currentPage = 1;
-
+  let currentPage = 1;  
   const updateList = () => {
-    const totalPage = Math.ceil(carsNum / pageCount);
-    document.getElementById(
-      "page-info"
-    ).textContent = `Strona ${currentPage} z ${totalPage}`;  
-  };
+      if (searchText){        
+        const carsNum = [...items].filter((car)=>{
+          const brand = car.querySelector(".brand .item-att-val").textContent.toLowerCase();
+          return brand.includes(searchText);
+          }).length
+        console.log('searchText',searchText);        
+        items.forEach((car) => {
+          const brand = car
+            .querySelector(".brand .item-att-val")
+            .textContent.toLowerCase();          
+          if (brand.includes(searchText)) {
+            // car.style.display = "flex";
+            car.classList.add('el-flex');
+            car.classList.remove('el-unvisible');
+          } else {
+            // car.style.display = "none";
+            car.classList.add('el-unvisible');
+            car.classList.remove('el-flex');
+          }
+        });
+        const totalPage = Math.ceil(carsNum / pageCount);
+        console.log('currentPage',currentPage, 'totalPage', totalPage)
+        document.getElementById("page-info").textContent = `Strona ${currentPage} z ${totalPage}`;
+        
+        if(currentPage===totalPage){         
+          document.getElementById("next-btn").disabled = true;          
+        }
+        else {document.getElementById("next-btn").disabled = false;
+        }
+        
+      }
+      else {
+        console.log('there"s no searchtext')        
+        const start = (currentPage - 1) * pageCount;
+        const end = start + pageCount;
+        items.forEach((item, index) => {
+          if (index >= start && index < end) {
+            // item.style.display = "flex";
+            item.classList.add('el-flex');
+            item.classList.remove('el-unvisible');
+          } else {
+            // item.style.display = "none";
+            item.classList.add('el-unvisible');
+            item.classList.remove('el-flex');
+          }
+        });
+        const totalPage = Math.ceil(items.length / pageCount);
+        document.getElementById("page-info").textContent = `Strona ${currentPage} z ${totalPage}`;
+        
+        if(currentPage===totalPage){         
+          document.getElementById("next-btn").disabled = true;          
+        }
+        else {document.getElementById("next-btn").disabled = false;
+        }
+      }
+    };
 
+   
   const nextPage = () => {
-    const totalPage = Math.ceil(carsNum / pageCount);
+    let totalPage;
+    if (searchText){
+      const carsNum = [...items].filter((car)=>{
+        const brand = car.querySelector(".brand .item-att-val").textContent.toLowerCase();
+        return brand.includes(searchText);
+        }).length
+      totalPage = Math.ceil(carsNum / pageCount);
+    }
+    else {totalPage = Math.ceil(items.length / pageCount);}    
+    
     if (currentPage < totalPage) {
       currentPage++;
       updateList();
     }
+    // if(currentPage===totalPage){         
+    //   document.getElementById("next-btn").disabled = true;          
+    // }
+    // else {document.getElementById("next-btn").disabled = false;
+    // }
   };
 
   const prevPage = () => {
@@ -476,6 +571,11 @@ searchInput.addEventListener("input", function () {
       currentPage--;
       updateList();
     }
+    // if(currentPage===totalPage){         
+    //   document.getElementById("next-btn").disabled = true;          
+    // }
+    // else {document.getElementById("next-btn").disabled = false;
+    // }
   };
 
   document.getElementById("next-btn").addEventListener("click", nextPage);

@@ -85,7 +85,7 @@ main {
 #search-form {
   margin: 20px auto;
   padding: 20px;
-  display: flex;
+  /* display: flex; */
   flex-direction: column;
   justify-content: center;
   border: 2px solid black;
@@ -115,7 +115,7 @@ main {
 
 ul#car-list {  
   flex-wrap: wrap;
-  display: flex;
+  /* display: flex; */
   list-style-type: none;
   justify-content: center;
   margin-right: 40px;
@@ -123,7 +123,7 @@ ul#car-list {
 }
 
 ul#car-list > li {
-  display: flex;
+  /* display: flex; */
   flex-direction: column;
   margin: 15px;
   margin-bottom: 20px;
@@ -301,7 +301,7 @@ ul#car-list > li:hover {
 #accesories {
   border: none;
   margin: 10px 0;
-  display: none;
+  /* display: none; */
 }
 #chosen-accesories {
   list-style-type: none;
@@ -410,4 +410,31 @@ footer {
   flex-direction: column;
   color: rgb(0, 84, 206);
   font-family: "Russo One", sans-serif;
+}
+
+
+.el-unvisible{
+  display: none;
+}
+
+.el-flex{
+  display: flex;
+}
+
+.el-block{
+  display: block;
+}
+
+.main-after-config{
+  width: 800px;
+  justify-content: center;
+}
+
+.main-after-return{
+  width: 1000px;
+  justify-content: space-evenly;
+}
+
+.object-fit{
+  object-fit: cover;
 }

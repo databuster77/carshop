@@ -7,7 +7,7 @@ export const fetchCarPrice = (carId) => {
         return response.json();
       })
       .then((data) => {
-        let foundCar = data.filter((item) => item.id === carId)[0];
+        const foundCar = data.filter((item) => item.id === carId)[0];
         if (foundCar) {
           // console.log("foundCarPrice", foundCar.price);
           return foundCar.price;

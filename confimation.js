@@ -2,7 +2,8 @@ const carImage = localStorage.getItem("chosenCarImage");
 if (carImage) {        
         const imgElement = document.createElement("img");
         imgElement.src = carImage;        
-        imgElement.style.objectFit = "cover";
+        // imgElement.style.objectFit = "cover";
+        imgElement.classList.add('object-fit');
         // imgElement.style.borderBottomLeftRadius = "15px";
         // imgElement.style.borderBottomRightRadius = "15px";
         // imgElement.style.margin = "0 auto";

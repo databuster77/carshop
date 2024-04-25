@@ -12,7 +12,7 @@ export const addSelectionToBasket = async (e, carId) => {
     const selectedItemText = selectedOption.text;
     const selectedItemValue = selectedOption.value;
   
-    let [accesoryName, ...suffixSelection] = selectedItemText.split(":");
+    const [accesoryName, ...suffixSelection] = selectedItemText.split(":");
     let apiUrl;
     if (selectedItemValue.startsWith("ak")) {
       apiUrl = "assets/parts/batteries.json";
@@ -22,7 +22,7 @@ export const addSelectionToBasket = async (e, carId) => {
       apiUrl = "assets/parts/oils.json";
     }
   
-    let {accesoryPrice, accesoryType} = await fetchAccesoryPrice(apiUrl, selectedItemValue);    
+    const {accesoryPrice, accesoryType} = await fetchAccesoryPrice(apiUrl, selectedItemValue);    
     const existingLi = [...ul.children].find(
       (li) => li.querySelector(".accesory-id").textContent === selectedItemValue
     );
@@ -51,14 +51,15 @@ export const addSelectionToBasket = async (e, carId) => {
                           <button class="accesory-less">-</button>
                           <button class="accesory-delete">Usuń</button>
                           <span class="accesory-total-price">Cena łącznie: <span class="accesory-total-price-amount"></span> PLN</span>`;
-                          li.querySelector('.accesory-id').style.display="none";
-                          li.querySelector('.accesory-price').style.display = "none";                              
-
-                          ul.appendChild(li);
-      let lastAddedLi = ul.lastElementChild;
-      let buttonMore = lastAddedLi.querySelector(".accesory-more");
-      let buttonLess = lastAddedLi.querySelector(".accesory-less");
-      let buttonDelete = lastAddedLi.querySelector(".accesory-delete");
+      // li.querySelector('.accesory-id').style.display="none";
+      // li.querySelector('.accesory-price').style.display = "none";                              
+      li.querySelector('.accesory-id').classList.add('el-unvisible');
+      li.querySelector('.accesory-price').classList.add('el-unvisible');
+      ul.appendChild(li);
+      const lastAddedLi = ul.lastElementChild;
+      const buttonMore = lastAddedLi.querySelector(".accesory-more");
+      const buttonLess = lastAddedLi.querySelector(".accesory-less");
+      const buttonDelete = lastAddedLi.querySelector(".accesory-delete");
       changeItemQuantity("add", buttonMore, accesoryPrice, carId);
       changeItemQuantity("subtract", buttonLess, accesoryPrice, carId);
       deletItem(buttonDelete, carId);      

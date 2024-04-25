@@ -9,25 +9,25 @@ export const recalculateOrderPrice = async (carId) => {
       .reduce((accumulator, currentValue) => {
         return accumulator + currentValue;
       }, 0);
-    let carPrice = await fetchCarPrice(carId);
-    let totalOrderPrice = document.getElementById("total-price");
+    const carPrice = await fetchCarPrice(carId);
+    const totalOrderPrice = document.getElementById("total-price");
     // totalOrderPriceRecalculated = parseInt(totalOrderPrice.textContent) + accesoriesTotalPrice;
-    let totalOrderPriceRecalculated = carPrice + accesoriesTotalPrice;
+    const totalOrderPriceRecalculated = carPrice + accesoriesTotalPrice;
     totalOrderPrice.textContent = totalOrderPriceRecalculated;
     // console.log("Recalculated Price", totalOrderPriceRecalculated);
-    let orderConfigData = JSON.parse(localStorage.getItem("orderConfigData"));
+    const orderConfigData = JSON.parse(localStorage.getItem("orderConfigData"));
     if (orderConfigData) {
-      let chosenCar = orderConfigData.find((car) => car.id === carId);
+      const chosenCar = orderConfigData.find((car) => car.id === carId);
       if (chosenCar) {
-        let accesoriesData = [...ul.children].map((li) => {
+        const accesoriesData = [...ul.children].map((li) => {
           // console.log("li", li);
-          let accesoryId = li.querySelector(".accesory-id").textContent;
-          let accesoryType = li.querySelector(".accesory-type").textContent;
-          let assesoryName = li.querySelector(".assesory-name").textContent;
-          let accesoryQuantity = li.querySelector("#accesory-quantity").textContent;          
-          let accesoryTotalPrice = li.querySelector(".accesory-total-price-amount").textContent;          
+          const accesoryId = li.querySelector(".accesory-id").textContent;
+          const accesoryType = li.querySelector(".accesory-type").textContent;
+          const assesoryName = li.querySelector(".assesory-name").textContent;
+          const accesoryQuantity = li.querySelector("#accesory-quantity").textContent;          
+          const accesoryTotalPrice = li.querySelector(".accesory-total-price-amount").textContent;          
           
-          let accesoryData = {
+          const accesoryData = {
             accesoryId,
             accesoryType,
             assesoryName,

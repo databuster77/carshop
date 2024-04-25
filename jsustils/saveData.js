@@ -1,10 +1,10 @@
 export const saveData = (e, carId) => {
-    let orderConfigData = JSON.parse(localStorage.getItem("orderConfigData"));
+    const orderConfigData = JSON.parse(localStorage.getItem("orderConfigData"));
     if (orderConfigData) {
-      let chosenCar = orderConfigData.find((car) => car.id === carId);
+      const chosenCar = orderConfigData.find((car) => car.id === carId);
       let updatedOrderDetails;
       if (chosenCar) {
-        let changedField = e.target.id;     
+        const changedField = e.target.id;     
         let newFieldValue;
         let valuesChanged={};            
         if (changedField!=='cash' && changedField!=='leasing'){
