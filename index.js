@@ -36,85 +36,63 @@ document
 
 // cars data downloading and dynamic creation of car list
 
-fetch("assets/cars/cars.json")
-  .then((response) => {
+async function fetchAndDisplayCars() {
+  try {
+    const response = await fetch("assets/cars/cars.json");
     if (!response.ok) {
       throw new Error("Network response was not ok");
     }
-    return response.json();
-  })
-  .then((data) => {
+    const data = await response.json();
+
     const ul = document.getElementById("car-list");
     data.forEach((item, index) => {
       const li = document.createElement("li");
       let liContent = `<div class="description" id="${item.id}">
-                            <div class="car-name">
+                          <div class="car-name">
                             <span class="item-att-val">${item.car_name}</span>
-                            </div>
-                            <img class="car-main-picture" src="${
-                              item.main_picture
-                            }" alt="car"/>
-                            <div class="brand">
-                            <span class="item-att">Marka:</span><span class="item-att-val">${
-                              item.car_brand
-                            }</span>
-                            </div>
-                            <div class="power">
-                            <span class="item-att">Moc silnika:</span><span class="item-att-val">${
-                              item.engine_power
-                            } KM</span>
-                            </div>
-                            <div class="year">
-                            <span class="item-att">Rok produkcji:</span><span class="item-att-val">${
-                              item.manufacture_year
-                            }</span>
-                            </div>
-                            <div class="milage">
-                            <span class="item-att">Przebieg:</span><span class="item-att-val">${
-                              item.mileage
-                            } km</span>
-                            </div>
-                            <div class="price">
-                            <span class="item-att">Cena:</span><span class="item-att-val">${item.price.toLocaleString(
-                              "pl-PL"
-                            )} PLN</span>
-                            </div>                            
-                            </div>
-                            <button class="order-config" data-index="${index}">Konfiguracja zamówienia</button>                            `;
+                          </div>
+                          <img class="car-main-picture" src="${item.main_picture}" alt="car"/>
+                          <div class="brand">
+                            <span class="item-att">Marka:</span><span class="item-att-val">${item.car_brand}</span>
+                          </div>
+                          <div class="power">
+                            <span class="item-att">Moc silnika:</span><span class="item-att-val">${item.engine_power} KM</span>
+                          </div>
+                          <div class="year">
+                            <span class="item-att">Rok produkcji:</span><span class="item-att-val">${item.manufacture_year}</span>
+                          </div>
+                          <div class="milage">
+                            <span class="item-att">Przebieg:</span><span class="item-att-val">${item.mileage} km</span>
+                          </div>
+                          <div class="price">
+                            <span class="item-att">Cena:</span><span class="item-att-val">${item.price.toLocaleString("pl-PL")} PLN</span>
+                          </div>
+                          <button class="order-config" data-index="${index}">Konfiguracja zamówienia</button>
+                        </div>`;
       li.innerHTML = liContent;
       ul.appendChild(li);
     });
-  })
-  .then(() => {
-    const ul = document.getElementById("car-list");
-    const items = ul.querySelectorAll("li");
 
+    // Pagination initialization
+    const items = ul.querySelectorAll("li");
     const pageCount = 4;
     let currentPage = 1;
 
     const updateList = () => {
       const totalPage = Math.ceil(items.length / pageCount);
-      document.getElementById(
-        "page-info"
-      ).textContent = `Strona ${currentPage} z ${totalPage}`;
+      document.getElementById("page-info").textContent = `Strona ${currentPage} z ${totalPage}`;
       const start = (currentPage - 1) * pageCount;
       const end = start + pageCount;
       items.forEach((item, index) => {
         if (index >= start && index < end) {
-          // item.style.display = "flex";
           item.classList.add('el-flex');
           item.classList.remove('el-unvisible');
         } else {
-          // item.style.display = "none";
           item.classList.add('el-unvisible');
           item.classList.remove('el-flex');
         }
       });
-      if(currentPage===totalPage){         
-        document.getElementById("next-btn").disabled = true;          
-      }
-      else {document.getElementById("next-btn").disabled = false;
-      }
+      document.getElementById("next-btn").disabled = currentPage === totalPage;
     };
 
     const nextPage = () => {
@@ -130,16 +108,24 @@ fetch("assets/cars/cars.json")
         currentPage--;
         updateList();
       }
+
+    
     };
 
     document.getElementById("next-btn").addEventListener("click", nextPage);
     document.getElementById("prev-btn").addEventListener("click", prevPage);
 
     updateList();
-  })
-  .catch((error) => {
+    
+    return items
+
+  } catch (error) {
     console.error("There was a problem with your fetch operation:", error);
-  });
+  }
+}
+
+let carsAll = await fetchAndDisplayCars();
+
 
 // adding event listener to order-config button
 
@@ -478,34 +464,33 @@ placeOrderButton.addEventListener("click", (e) => {
 });
 
 // adding event listener to search form
+const carList = document.getElementById("car-list");
+
 const searchInput = document.getElementById("search");
-searchInput.addEventListener("input", function () {
-  const ul = document.getElementById("car-list");
-  const searchText = searchInput.value.toLowerCase();
-  const items = ul.querySelectorAll("li");
+searchInput.addEventListener("input", function () {  
+  const searchText = searchInput.value.toLowerCase();  
   const pageCount = 4;
   let currentPage = 1;  
   const updateList = () => {
-      if (searchText){        
-        const carsNum = [...items].filter((car)=>{
-          const brand = car.querySelector(".brand .item-att-val").textContent.toLowerCase();
+      if (searchText){
+        const filteredItems = [...carsAll].filter(item => {
+          const brand = item.querySelector(".brand .item-att-val").textContent.toLowerCase();
           return brand.includes(searchText);
-          }).length
-        console.log('searchText',searchText);        
-        items.forEach((car) => {
-          const brand = car
-            .querySelector(".brand .item-att-val")
-            .textContent.toLowerCase();          
-          if (brand.includes(searchText)) {
-            // car.style.display = "flex";
-            car.classList.add('el-flex');
-            car.classList.remove('el-unvisible');
+        });        
+        const carsNum = filteredItems.length
+        while (carList.firstChild) {
+          carList.removeChild(carList.firstChild);
+        }
+        filteredItems.forEach((item, index) => {
+          if (index >= (currentPage - 1) * pageCount && index < currentPage * pageCount) {
+            carList.appendChild(item)
+            item.classList.add('el-flex');
+            item.classList.remove('el-unvisible');
           } else {
-            // car.style.display = "none";
-            car.classList.add('el-unvisible');
-            car.classList.remove('el-flex');
+            item.classList.add('el-unvisible');
+            item.classList.remove('el-flex');
           }
-        });
+        });        
         const totalPage = Math.ceil(carsNum / pageCount);
         console.log('currentPage',currentPage, 'totalPage', totalPage)
         document.getElementById("page-info").textContent = `Strona ${currentPage} z ${totalPage}`;
@@ -518,12 +503,16 @@ searchInput.addEventListener("input", function () {
         
       }
       else {
-        console.log('there"s no searchtext')        
+        console.log('there"s no searchtext')
+        while (carList.firstChild) {
+          carList.removeChild(carList.firstChild);
+        }        
         const start = (currentPage - 1) * pageCount;
         const end = start + pageCount;
-        items.forEach((item, index) => {
+        carsAll.forEach((item, index) => {
           if (index >= start && index < end) {
             // item.style.display = "flex";
+            carList.appendChild(item)
             item.classList.add('el-flex');
             item.classList.remove('el-unvisible');
           } else {
@@ -532,7 +521,7 @@ searchInput.addEventListener("input", function () {
             item.classList.remove('el-flex');
           }
         });
-        const totalPage = Math.ceil(items.length / pageCount);
+        const totalPage = Math.ceil(carsAll.length / pageCount);
         document.getElementById("page-info").textContent = `Strona ${currentPage} z ${totalPage}`;
         
         if(currentPage===totalPage){         
@@ -547,23 +536,19 @@ searchInput.addEventListener("input", function () {
   const nextPage = () => {
     let totalPage;
     if (searchText){
-      const carsNum = [...items].filter((car)=>{
+      const carsNum = [...carsAll].filter((car)=>{
         const brand = car.querySelector(".brand .item-att-val").textContent.toLowerCase();
         return brand.includes(searchText);
         }).length
       totalPage = Math.ceil(carsNum / pageCount);
     }
-    else {totalPage = Math.ceil(items.length / pageCount);}    
+    else {totalPage = Math.ceil(cars.length / pageCount);}    
     
     if (currentPage < totalPage) {
       currentPage++;
       updateList();
     }
-    // if(currentPage===totalPage){         
-    //   document.getElementById("next-btn").disabled = true;          
-    // }
-    // else {document.getElementById("next-btn").disabled = false;
-    // }
+    
   };
 
   const prevPage = () => {
@@ -571,11 +556,7 @@ searchInput.addEventListener("input", function () {
       currentPage--;
       updateList();
     }
-    // if(currentPage===totalPage){         
-    //   document.getElementById("next-btn").disabled = true;          
-    // }
-    // else {document.getElementById("next-btn").disabled = false;
-    // }
+    
   };
 
   document.getElementById("next-btn").addEventListener("click", nextPage);
