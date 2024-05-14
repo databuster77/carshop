@@ -129,36 +129,41 @@ let carsAll = await fetchAndDisplayCars();
 
 // adding event listener to order-config button
 
-document.getElementById("car-list").addEventListener("click", (e) => {
+document.getElementById("car-list").addEventListener("click", async (e) => {
   if (e.target.className === "order-config") {
     e.preventDefault();
 
     const index = e.target.getAttribute("data-index");
-    const description = document.getElementById(`ca_${index}`);
 
+    // const description = document.getElementById(`ca_${index}`);
     const carId = `ca_${index}`;
-    const brand = description
-      .querySelector(".brand")
-      .querySelector(".item-att-val").textContent;
-    const carImage = description
-      .querySelector(".car-main-picture")
-      .cloneNode(true);
-    carImage.className = "car-image-inner";
-    const carName = description
-      .querySelector(".car-name")
-      .querySelector(".item-att-val").textContent;
-    const year = description
-      .querySelector(".year")
-      .querySelector(".item-att-val").textContent;
-    const power = description
-      .querySelector(".power")
-      .querySelector(".item-att-val").textContent;
-    const milage = description
-      .querySelector(".milage")
-      .querySelector(".item-att-val").textContent;
-    const price = description
-      .querySelector(".price")
-      .querySelector(".item-att-val").textContent;
+    async function fetchAndDisplayCar() {
+      try {
+        const response = await fetch("assets/cars/cars.json");
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+        const data = await response.json();
+        const chosenCar = data.find((car) => car.id === carId);
+        return chosenCar 
+      } catch (error) {
+        console.error("There was a problem with your fetch operation:", error);
+      }
+    }
+    const chosenCar = await fetchAndDisplayCar();
+    console.log('chosenCar in buyform', chosenCar)
+
+    const brand = chosenCar.car_brand;
+    const carImage = chosenCar.main_picture;
+    // const carImage = description
+    //   .querySelector(".car-main-picture")
+    //   .cloneNode(true);
+    // carImage.className = "car-image-inner";
+    const carName = chosenCar.car_name;
+    const year = chosenCar.manufacture_year;
+    const power = chosenCar.engine_power;
+    const milage = chosenCar.mileage;
+    const price = chosenCar.price;
 
     const buyForm = document.querySelector(".buy-form");
 
@@ -170,7 +175,11 @@ document.getElementById("car-list").addEventListener("click", (e) => {
     buyForm
       .querySelector(".car-name")
       .querySelector(".item-att-val").textContent = carName;
-    buyForm.querySelector(".car-image").appendChild(carImage);
+    const carImageInner = document.createElement('img');
+    carImageInner.className = 'car-image-inner';
+    carImageInner.src = carImage;
+    carImageInner.alt = 'car'
+    buyForm.querySelector(".car-image").appendChild(carImageInner);
     buyForm.querySelector(".year").querySelector(".item-att-val").textContent =
       year;
     buyForm.querySelector(".power").querySelector(".item-att-val").textContent =
@@ -187,6 +196,7 @@ document.getElementById("car-list").addEventListener("click", (e) => {
       id: carId,
       car_brand: brand,
       car_name: carName,
+      car_image: carImage,
       manufacture_year: year,
       engine_power: power,
       mileage: milage,
@@ -285,7 +295,7 @@ document.getElementById("car-list").addEventListener("click", (e) => {
       }
     } else {
       // localStorage.setItem("orderConfigData", JSON.stringify([]));
-      orderConfigData = [];
+      let orderConfigData = [];
       orderConfigData.push(formData);
       localStorage.setItem("orderConfigData", JSON.stringify(orderConfigData));
     }
@@ -432,17 +442,7 @@ placeOrderButton.addEventListener("click", (e) => {
     const carId = document
       .querySelector(".car-id")
       .querySelector(".item-att-val").textContent;
-    const carImage = document.querySelector(".car-image-inner");
-    const canvas = document.createElement("canvas");
-    const style = getComputedStyle(carImage);
-    const width = parseInt(style.width, 10);
-    const height = parseInt(style.height, 10);
-    canvas.width = width;
-    canvas.height = height;
-    const ctx = canvas.getContext("2d");
-    ctx.drawImage(carImage, 0, 0, width, height);
-    const dataURL = canvas.toDataURL();
-    localStorage.setItem("chosenCarImage", dataURL);
+    
     const orderConfigData = JSON.parse(localStorage.getItem("orderConfigData"));
     const chosenCar = orderConfigData.find((car) => car.id === carId);
     const radioCash = document.getElementById('cash');
