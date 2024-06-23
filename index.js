@@ -363,18 +363,18 @@ document.body.addEventListener("click", (e) => {
 });
 
 // adding listener to keep changed order details in localStorage
-// document.body.addEventListener("change", (e) => {
-//   if (
-//     e.target &&
-//     ["cash", "leasing", "first-name", "last-name", "delivery"].includes(
-//       e.target.id
-//     )
-//   ) {
-//     console.log("new changed e value", e.target.value);
-//     const carId = e.target.closest(".buy-form").dataset.carId;
-//     saveData(e, carId);
-//   }
-// });
+document.body.addEventListener("change", (e) => {
+  if (
+    e.target &&
+    ["cash", "leasing", "first-name", "last-name", "delivery"].includes(
+      e.target.id
+    )
+  ) {
+    console.log("new changed e value", e.target.value);
+    const carId = e.target.closest(".buy-form").dataset.carId;
+    saveData(e, carId);
+  }
+});
 
 // adding event listeners for button return-list
 const returnButton = document.getElementsByClassName(`return-list`)[0];
